@@ -176,7 +176,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
 {{-- ===== Modal Tambah/Edit Apotek ===== --}}
 <div id="modal-form" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
 
         {{-- Modal Header --}}
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
@@ -190,93 +190,110 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
         {{-- Modal Body --}}
         <div class="flex-1 overflow-y-auto p-6">
-            <form id="form-apotek" method="POST" class="space-y-4">
+            <form id="form-apotek" method="POST">
                 @csrf
                 <input type="hidden" name="_method" id="form-method" value="POST">
                 <input type="hidden" id="form-apotek-id" value="">
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
-                        <input type="text" name="nama_apotek" id="input-nama" required
-                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Kecamatan</label>
-                        <select name="kecamatan_id" id="input-kecamatan" required
-                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                            <option value="">Pilih Kecamatan</option>
-                            @foreach ($kecamatanList as $kecamatan)
-                            <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama_kecamatan }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                    {{-- ===== KOLOM KIRI ===== --}}
+                    <div class="space-y-4">
 
-                <div>
-                    <label class="block text-xs text-gray-500 mb-1">Jalan Apotik</label>
-                    <input type="text" name="jalan_apotek" id="input-jalan" required
-                        class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                </div>
-
-                <div>
-                    <label class="block text-xs text-gray-500 mb-1">Alamat Lengkap</label>
-                    <textarea name="alamat_lengkap" id="input-alamat" rows="2" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">No. Telp</label>
-                        <input type="text" name="no_telp" id="input-telp" placeholder="Opsional"
-                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Latitude</label>
-                        <input type="text" name="latitude" id="input-lat" required step="any" placeholder="-8.35000000"
-                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-gray-500 mb-1">Longitude</label>
-                        <input type="text" name="longitude" id="input-lng" required step="any"
-                            placeholder="116.10000000"
-                            class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                    </div>
-                </div>
-
-                <div class="rounded-3xl border border-gray-200 bg-gray-50 p-4">
-                    <h2 class="text-sm font-semibold text-gray-700 mb-4">Jam Operasional</h2>
-                    <div class="space-y-2">
-                        @foreach ($days as $day)
-                        <div
-                            class="grid grid-cols-[90px_1fr_120px_120px] gap-3 items-center rounded-xl bg-white p-3 border border-gray-200">
-                            <span class="text-sm font-medium text-gray-700">{{ $day }}</span>
-                            <select name="jam_operasional[{{ $day }}][status_buka]"
-                                class="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                                <option value="Buka">Buka</option>
-                                <option value="Tutup">Tutup</option>
-                            </select>
-                            <input type="time" name="jam_operasional[{{ $day }}][jam_buka]" value=""
-                                class="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                            <input type="time" name="jam_operasional[{{ $day }}][jam_tutup]" value=""
-                                class="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                        {{-- Nama Apotik --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
+                            <input type="text" name="nama_apotek" id="input-nama" required
+                                class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                         </div>
-                        @endforeach
+
+                        {{-- No. Telp --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">No. Telp</label>
+                            <input type="text" name="no_telp" id="input-telp" placeholder="Opsional"
+                                class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                        </div>
+
+                        {{-- Jam Operasional --}}
+                        <div class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+                            <h2 class="text-sm font-semibold text-gray-700 mb-3">Jam Operasional</h2>
+                            <div class="space-y-2">
+                                @foreach ($days as $day)
+                                <div class="grid grid-cols-[80px_2fr_4fr_4fr] gap-2 items-center rounded-lg bg-white p-2.5 border border-gray-200">
+                                    <span class="text-xs font-medium text-gray-700">{{ $day }}</span>
+                                    <select name="jam_operasional[{{ $day }}][status_buka]"
+                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                                        <option value="Buka">Buka</option>
+                                        <option value="Tutup">Tutup</option>
+                                    </select>
+                                    <input type="time" name="jam_operasional[{{ $day }}][jam_buka]" value=""
+                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                                    <input type="time" name="jam_operasional[{{ $day }}][jam_tutup]" value=""
+                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
+
+                    {{-- ===== KOLOM KANAN ===== --}}
+                    <div class="space-y-4">
+
+                        {{-- Kecamatan --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Kecamatan</label>
+                            <select name="kecamatan_id" id="input-kecamatan" required
+                                class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                                <option value="">Pilih Kecamatan</option>
+                                @foreach ($kecamatanList as $kecamatan)
+                                <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama_kecamatan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Jalan Apotik --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Jalan Apotik</label>
+                            <input type="text" name="jalan_apotek" id="input-jalan" required
+                                class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                        </div>
+
+                        {{-- Alamat Lengkap --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Alamat Lengkap</label>
+                            <textarea name="alamat_lengkap" id="input-alamat" rows="2" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600"></textarea>
+                        </div>
+
+                        {{-- Peta --}}
+                        <div>
+                            <label class="block text-xs text-gray-500 mb-1">Pilih Lokasi di Peta</label>
+                            <p class="text-[11px] text-gray-400 mb-1.5">Klik pada peta atau seret marker untuk mengatur lokasi.</p>
+                            <div id="form-map" class="w-full rounded-lg border border-gray-200 overflow-hidden"
+                                style="height: 240px;"></div>
+                        </div>
+
+                        {{-- Lat/Lng --}}
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Latitude</label>
+                                <input type="text" name="latitude" id="input-lat" required step="any" placeholder="-8.35000000"
+                                    class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Longitude</label>
+                                <input type="text" name="longitude" id="input-lng" required step="any"
+                                    placeholder="116.10000000"
+                                    class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                {{-- Peta untuk Pilih Lokasi --}}
-                <div>
-                    <label class="block text-xs text-gray-500 mb-1">Pilih Lokasi di Peta</label>
-                    <p class="text-xs text-gray-400 mb-2">Klik pada peta atau seret marker untuk mengatur latitude &
-                        longitude secara otomatis.</p>
-                    <div id="form-map" class="w-full rounded-lg border border-gray-200 overflow-hidden"
-                        style="height: 300px;"></div>
-                </div>
-
+                {{-- Error Box --}}
                 <div id="form-errors"
-                    class="hidden rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                    class="hidden mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                     <ul id="form-errors-list" class="list-disc pl-5 space-y-1"></ul>
                 </div>
             </form>
@@ -362,9 +379,12 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
         // Fetch data apotek
         fetch('/admin/apotek/' + id + '/edit', {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
         })
-        .then(function(res) { return res.json(); })
+        .then(parseJsonResponse)
         .then(function(data) {
             document.getElementById('input-nama').value = data.nama_apotek || '';
             document.getElementById('input-kecamatan').value = data.kecamatan_id || '';
@@ -373,6 +393,25 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             document.getElementById('input-telp').value = data.no_telp || '';
             document.getElementById('input-lat').value = data.latitude || '';
             document.getElementById('input-lng').value = data.longitude || '';
+
+            // Pre-fill jam operasional
+            var days = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'];
+            days.forEach(function(hari) {
+                var jadwal = (data.jam_operasional || []).find(function(j) { return j.hari === hari; });
+                var statusSel = document.querySelector('select[name="jam_operasional[' + hari + '][status_buka]"]');
+                var bukaInput = document.querySelector('input[name="jam_operasional[' + hari + '][jam_buka]"]');
+                var tutupInput = document.querySelector('input[name="jam_operasional[' + hari + '][jam_tutup]"]');
+
+                if (jadwal) {
+                    statusSel.value = jadwal.status_buka || 'Tutup';
+                    bukaInput.value = jadwal.jam_buka ? jadwal.jam_buka.substring(0, 5) : '';
+                    tutupInput.value = jadwal.jam_tutup ? jadwal.jam_tutup.substring(0, 5) : '';
+                } else {
+                    statusSel.value = 'Tutup';
+                    bukaInput.value = '';
+                    tutupInput.value = '';
+                }
+            });
 
             document.getElementById('form-apotek').action = '/admin/apotek/' + id;
             document.getElementById('btn-submit').textContent = 'Update';
@@ -494,15 +533,11 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             body: formData,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
             }
         })
-        .then(function(res) {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.json().then(function(data) { throw data; });
-        })
+        .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
             window.location.reload();

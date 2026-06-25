@@ -199,9 +199,12 @@
         document.getElementById('form-errors').classList.add('hidden');
 
         fetch('/admin/kecamatan/' + id + '/edit', {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
         })
-        .then(function(res) { return res.json(); })
+        .then(parseJsonResponse)
         .then(function(data) {
             document.getElementById('input-nama').value = data.nama_kecamatan || '';
             document.getElementById('form-kecamatan').action = '/admin/kecamatan/' + id;
@@ -270,15 +273,11 @@
             body: formData,
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
             }
         })
-        .then(function(res) {
-            if (res.ok) {
-                return res.json();
-            }
-            return res.json().then(function(data) { throw data; });
-        })
+        .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
             window.location.reload();

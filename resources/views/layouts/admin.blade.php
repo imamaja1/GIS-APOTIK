@@ -162,6 +162,20 @@
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
         });
+
+        function parseJsonResponse(res) {
+            var ct = res.headers.get('content-type') || '';
+            if (ct.indexOf('application/json') !== -1) {
+                return res.json();
+            }
+            if (res.status === 419) {
+                throw { message: 'Session habis. Silakan login ulang.' };
+            }
+            if (res.status >= 300 && res.status < 400) {
+                throw { message: 'Redirect. Silakan refresh halaman.' };
+            }
+            throw { message: 'Server mengembalikan respons yang tidak valid. Silakan coba lagi.' };
+        }
     </script>
 
     @stack('scripts')

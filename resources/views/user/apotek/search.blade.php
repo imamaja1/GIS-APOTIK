@@ -122,6 +122,10 @@ document.addEventListener('DOMContentLoaded', function () {
             url: '{{ route("user.apotek.search-json") }}',
             dataType: 'json',
             delay: 300,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            },
             data: function (params) { return { q: params.term }; },
             processResults: function (data) { return { results: data.results }; },
             cache: true,

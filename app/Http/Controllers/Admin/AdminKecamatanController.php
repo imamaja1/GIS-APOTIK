@@ -58,8 +58,10 @@ class AdminKecamatanController extends Controller
 
     public function destroy(Request $request, Kecamatan $kecamatan): JsonResponse|RedirectResponse
     {
-        if ($kecamatan->apotek()->count() > 0) {
-            $message = 'Kecamatan memiliki ' . $kecamatan->apotek()->count() . ' apotek dan tidak dapat dihapus.';
+        $count = $kecamatan->apotek()->count();
+
+        if ($count > 0) {
+            $message = 'Kecamatan memiliki ' . $count . ' apotek dan tidak dapat dihapus.';
             
             if ($request->expectsJson()) {
                 return response()->json(['message' => $message], 422);

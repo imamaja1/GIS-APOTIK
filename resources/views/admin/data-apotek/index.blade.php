@@ -236,9 +236,12 @@
 
     function bukaModalDetail(id) {
         fetch('/admin/data-apotek/' + id + '/detail', {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
         })
-        .then(function(res) { return res.json(); })
+        .then(parseJsonResponse)
         .then(function(data) {
             document.getElementById('detail-nama').textContent = data.nama_apotek || '-';
             document.getElementById('detail-kecamatan').textContent = data.kecamatan?.nama_kecamatan || '-';

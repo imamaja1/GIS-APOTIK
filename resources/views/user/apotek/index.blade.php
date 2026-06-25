@@ -227,8 +227,13 @@
         modal.classList.remove('hidden');
         modal.classList.add('flex');
 
-        fetch('/user/apotek/' + apotekId + '/detail')
-            .then(function (res) { return res.json(); })
+        fetch('/user/apotek/' + apotekId + '/detail', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json'
+            }
+        })
+            .then(parseJsonResponse)
             .then(function (data) {
 
                 document.getElementById('modal-nama').textContent      = data.nama_apotek;
