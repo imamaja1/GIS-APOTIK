@@ -127,7 +127,7 @@ $jamOperasional = $apotek->jamOperasional->keyBy('hari');
 
                 <div class="rounded-3xl border border-gray-200 bg-white p-4">
                     <h2 class="text-sm font-semibold text-gray-700 mb-4">Peta Lokasi</h2>
-                    <div id="form-map" class="h-72 rounded-2xl border border-gray-200 overflow-hidden"></div>
+                    <div id="form-map" class="h-72 rounded-2xl border border-gray-200"></div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">

@@ -11,6 +11,6 @@
 --}}
 <div
     id="{{ $mapId ?? 'map' }}"
-    class="w-full rounded-b-xl"
-    style="height: {{ $height ?? '400px' }}; z-index: 0;"
+    class="w-full"
+    style="height: {{ $height ?? '400px' }};"
 ></div>

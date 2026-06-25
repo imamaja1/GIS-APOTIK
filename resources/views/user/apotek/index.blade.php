@@ -141,7 +141,7 @@
 
     {{-- ===== Modal Detail Apotek ===== --}}
     <div id="modal-detail"
-         class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+         class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
 
             {{-- Modal Header --}}

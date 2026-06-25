@@ -7,13 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'GIS Apotek KLU')</title>
 
-    {{-- Tailwind via Vite --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- Leaflet CSS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    {{-- Select2 CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -22,12 +18,13 @@
 
 <body class="bg-gray-50 min-h-screen">
 
-    {{-- Navbar --}}
-    <nav class="bg-green-600 shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {{-- ===== NAVBAR ===== --}}
+    <nav class="bg-green-600 shadow sticky top-0 z-[1050]">
+        {{-- Mobile: full-width with padding --}}
+        <div class="lg:max-w-7xl lg:mx-auto px-4 lg:px-8">
             <div class="flex items-center justify-between h-14">
 
-                {{-- Kiri: Brand + Nav links --}}
+                {{-- Kiri: Brand + Desktop nav links --}}
                 <div class="flex items-center gap-1">
                     <a href="{{ route('user.dashboard') }}" class="flex items-center gap-2 shrink-0 mr-3">
                         <svg class="w-5 h-5 text-green-200" fill="currentColor" viewBox="0 0 24 24">
@@ -37,7 +34,7 @@
                         <span class="text-white font-bold text-base tracking-wide">GIS APOTIK</span>
                     </a>
 
-                    {{-- Desktop nav links (lg ke atas) --}}
+                    {{-- Desktop nav links --}}
                     <div class="hidden lg:flex items-center gap-1">
                         <a href="{{ route('user.data-apotek') }}"
                             class="px-4 py-2 text-sm font-medium text-white rounded-md transition
@@ -52,26 +49,21 @@
                     </div>
                 </div>
 
-                {{-- Kanan: Logout --}}
+                {{-- Kanan: Desktop logout --}}
                 <div class="hidden lg:flex items-center">
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                        @csrf
-                        <button type="submit"
-                            class="px-4 py-2 text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 rounded-md transition border border-green-500">
-                            Log Out
-                        </button>
-                    </form>
+                    <button type="button" onclick="confirmLogout()"
+                        class="px-4 py-2 text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 rounded-md transition border border-green-500">
+                        Log Out
+                    </button>
                 </div>
 
-                {{-- Hamburger button (mobile only) --}}
+                {{-- Hamburger button (mobile) --}}
                 <button id="nav-hamburger" type="button" aria-label="Toggle menu"
                     class="lg:hidden flex items-center justify-center w-9 h-9 rounded-md text-white hover:bg-green-700 transition">
-                    {{-- Icon: 3 garis --}}
                     <svg id="icon-menu" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    {{-- Icon: X saat menu terbuka --}}
                     <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -81,7 +73,7 @@
             </div>
         </div>
 
-        {{-- Mobile menu (tersembunyi secara default) --}}
+        {{-- Mobile menu --}}
         <div id="nav-mobile" class="hidden lg:hidden border-t border-green-700">
             <div class="px-4 py-3 space-y-1">
                 <a href="{{ route('user.dashboard') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white transition
@@ -129,57 +121,34 @@
         </div>
     </nav>
 
-    {{-- Konten --}}
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    {{-- ===== CONTENT ===== --}}
+    <main class="px-4 lg:max-w-7xl lg:mx-auto lg:px-8 py-6">
         @yield('content')
     </main>
 
-    {{-- jQuery --}}
+    {{-- ===== SCRIPTS ===== --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    {{-- Leaflet JS --}}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    {{-- Select2 JS --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    {{--
-    ============================================================
-    KONFIGURASI PETA GLOBAL — edit di sini untuk ganti provider
-    ============================================================
-    --}}
     <script>
-        /** Koordinat pusat KLU dan zoom default */
         window.KLU_CENTER = [-8.3500, 116.1000];
-        window.KLU_ZOOM   = 11;
-
-        /** Provider tile OSM — ganti URL di sini untuk ganti provider */
-        window.MAP_TILE_URL    = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        window.KLU_ZOOM = 11;
+        window.MAP_TILE_URL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         window.MAP_TILE_ATTRIB = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
-        /**
-         * Inisialisasi Leaflet map dengan default KLU.
-         * @param {string} mapId   - id elemen DOM
-         * @param {object} options - { center: [lat,lng], zoom: number }
-         * @returns {L.Map}
-         */
         function initBaseMap(mapId, options) {
             options = options || {};
             var center = options.center || window.KLU_CENTER;
-            var zoom   = options.zoom   || window.KLU_ZOOM;
-
+            var zoom = options.zoom || window.KLU_ZOOM;
             var map = L.map(mapId, { zoomControl: true }).setView(center, zoom);
             L.tileLayer(window.MAP_TILE_URL, {
                 attribution: window.MAP_TILE_ATTRIB,
                 maxZoom: 19,
             }).addTo(map);
-
             return map;
         }
 
-        /**
-         * Buat ikon marker berwarna (divIcon lingkaran).
-         * @param {string} color - 'green' | 'blue' | 'red'
-         * @returns {L.DivIcon}
-         */
         function createMapIcon(color) {
             var colors = { green: '#16a34a', blue: '#2563eb', red: '#dc2626' };
             var c = colors[color] || colors.green;
@@ -192,7 +161,6 @@
             });
         }
 
-        /** Setup CSRF untuk jQuery AJAX */
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
         });
@@ -240,15 +208,41 @@
                 timerProgressBar: true
             });
         }
+
+        function alertError(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: message
+            });
+        }
+
+        function confirmDelete(nama, callback) {
+            Swal.fire({
+                title: 'Hapus Data?',
+                html: 'Data <strong>' + nama + '</strong> akan dihapus permanen.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    callback();
+                }
+            });
+        }
     </script>
 
-    {{-- Toggle hamburger (vanilla JS, tidak butuh jQuery) --}}
     <script>
         (function () {
-            var btn     = document.getElementById('nav-hamburger');
-            var menu    = document.getElementById('nav-mobile');
-            var iconMenu  = document.getElementById('icon-menu');
+            var btn = document.getElementById('nav-hamburger');
+            var menu = document.getElementById('nav-mobile');
+            var iconMenu = document.getElementById('icon-menu');
             var iconClose = document.getElementById('icon-close');
+            if (!btn) return;
 
             btn.addEventListener('click', function () {
                 var isOpen = !menu.classList.contains('hidden');
@@ -257,7 +251,6 @@
                 iconClose.classList.toggle('hidden', isOpen);
             });
 
-            // Tutup menu jika layar diperbesar ke desktop
             window.addEventListener('resize', function () {
                 if (window.innerWidth >= 1024) {
                     menu.classList.add('hidden');

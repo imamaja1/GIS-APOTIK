@@ -46,7 +46,7 @@
     </div>
 
     {{-- Peta --}}
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
         @include('partials.leaflet-map', ['mapId' => 'search-map', 'height' => '480px'])
     </div>
 

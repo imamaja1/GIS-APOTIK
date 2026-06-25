@@ -50,6 +50,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     // AJAX endpoints (admin)
     Route::get('/apotek/cari',         [ApotekController::class, 'searchJson'])->name('apotek.search-json');
     Route::get('/apotek/{id}/detail',  [ApotekController::class, 'detail'])->name('apotek.detail');
+
 });
 
 // ===== Panel User (harus login) =====

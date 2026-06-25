@@ -104,7 +104,7 @@
 </div>
 
 {{-- ===== Modal Tambah/Edit Kecamatan ===== --}}
-<div id="modal-form" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+<div id="modal-form" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
 
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
@@ -149,7 +149,7 @@
 </div>
 
 {{-- ===== Modal Hapus ===== --}}
-<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
         <div class="p-6 text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
@@ -170,7 +170,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" id="btn-hapus"
-                    class="w-full px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition">
+                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition">
                     Hapus
                 </button>
             </form>

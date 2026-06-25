@@ -171,8 +171,8 @@
 </div>
 
 {{-- ===== Modal Detail Apotek ===== --}}
-<div id="modal-detail" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl overflow-hidden">
+<div id="modal-detail" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
 
         {{-- Header --}}
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
@@ -185,7 +185,7 @@
         </div>
 
         {{-- Body --}}
-        <div class="p-5">
+        <div class="flex-1 overflow-y-auto p-5">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 {{-- Kiri: Info --}}
@@ -211,7 +211,7 @@
                 {{-- Kanan: Peta --}}
                 <div>
                     <label class="block text-xs text-gray-500 mb-1">Peta Apotek</label>
-                    <div id="detail-map" class="w-full rounded-lg border border-gray-200 bg-gray-100 overflow-hidden"
+                    <div id="detail-map" class="w-full rounded-lg border border-gray-200 bg-gray-100"
                         style="height: 224px; min-height: 224px;"></div>
                 </div>
 
@@ -222,7 +222,7 @@
         <div class="flex justify-end px-5 py-3 border-t border-gray-100">
             <button onclick="tutupModalDetail()"
                 class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition">
-                close
+                Tutup
             </button>
         </div>
 

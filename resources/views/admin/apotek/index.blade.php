@@ -175,7 +175,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 </div>
 
 {{-- ===== Modal Tambah/Edit Apotek ===== --}}
-<div id="modal-form" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+<div id="modal-form" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
 
         {{-- Modal Header --}}
@@ -271,7 +271,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                         <div>
                             <label class="block text-xs text-gray-500 mb-1">Pilih Lokasi di Peta</label>
                             <p class="text-[11px] text-gray-400 mb-1.5">Klik pada peta atau seret marker untuk mengatur lokasi.</p>
-                            <div id="form-map" class="w-full rounded-lg border border-gray-200 overflow-hidden"
+                            <div id="form-map" class="w-full rounded-lg border border-gray-200"
                                 style="height: 240px;"></div>
                         </div>
 
@@ -316,7 +316,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 </div>
 
 {{-- ===== Modal Hapus ===== --}}
-<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
         <div class="p-6 text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
@@ -339,7 +339,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 @csrf
                 @method('DELETE')
                 <button type="submit"
-                    class="w-full px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition">
+                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition">
                     Hapus
                 </button>
             </form>
@@ -369,8 +369,8 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         document.getElementById('btn-submit').textContent = 'Simpan';
         document.getElementById('form-errors').classList.add('hidden');
 
-        resetFormMap(defaultCenter, 11);
         showModal('modal-form');
+        setTimeout(function() { resetFormMap(defaultCenter, 11); }, 100);
     }
 
     function bukaModalEdit(id) {
@@ -420,9 +420,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
             var lat = parseFloat(data.latitude) || defaultCenter[0];
             var lng = parseFloat(data.longitude) || defaultCenter[1];
-            resetFormMap([lat, lng], 15);
 
             showModal('modal-form');
+            setTimeout(function() { resetFormMap([lat, lng], 15); }, 100);
         })
         .catch(function(err) {
             console.error('Gagal memuat data:', err);
@@ -483,7 +483,8 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             setFormMarker(center[0], center[1]);
         }
 
-        setTimeout(function() { formMap.invalidateSize(); }, 200);
+        setTimeout(function() { formMap.invalidateSize(); }, 300);
+        setTimeout(function() { formMap.invalidateSize(); }, 600);
     }
 
     function setFormMarker(lat, lng) {
