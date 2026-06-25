@@ -1,0 +1,227 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../../resources/views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* ── Warna Tema Utama ──────────────────────────────────────────────────
+       Ganti nilai di sini untuk mengubah warna seluruh aplikasi sekaligus. */
+    --color-primary:       #16a34a; /* hijau utama  (green-600) */
+    --color-primary-dark:  #15803d; /* hijau gelap  (green-700) */
+    --color-primary-light: #dcfce7; /* hijau muda   (green-100) */
+}
+
+/* ==========================================================================
+   SELECT2 — Kustomisasi tema hijau
+   Semua rule pakai !important untuk mengalahkan style inline bawaan Select2.
+   ==========================================================================
+
+   Catatan arsitektur:
+   - TIDAK pakai display:flex pada .select2-selection--single karena
+     Select2 memosisikan .select2-selection__arrow secara position:absolute.
+     Pakai display:flex akan merusak tata letak panah ▾ dan tombol ×.
+   - Vertikal center teks menggunakan line-height, bukan flexbox.
+   - Tombol clear (×) dibuat position:absolute relatif ke .--single
+     sehingga tidak ter-clip oleh overflow:hidden pada __rendered.
+
+   Urutan blok:
+     1. Kotak input (closed)
+     2. State fokus & terbuka
+     3. Kotak dropdown
+     4. Kolom pencarian dalam dropdown
+     5. Daftar opsi
+     6. Tombol clear (×)
+   ========================================================================== */
+
+/* ── 1. Kotak input (closed) ─────────────────────────────────────────────── */
+
+.select2-container .select2-selection--single {
+    height: 2.5rem !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.5rem !important;
+    background-color: #ffffff !important;
+    position: relative !important;  /* anchor untuk tombol × yang absolute */
+    cursor: default !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+}
+
+/* Teks yang tampil di dalam kotak */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 2.5rem !important;  /* vertikal center via line-height */
+    height: 2.5rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 2rem !important;   /* beri ruang untuk tombol panah ▾ */
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    display: block !important;
+}
+
+/* Teks placeholder */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #9ca3af !important;
+}
+
+/* Tombol panah ▾ — bawaan Select2 pakai position:absolute, kita sesuaikan ukurannya */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    position: absolute !important;
+    height: 2.5rem !important;
+    top: 0 !important;
+    right: 0.375rem !important;
+    width: 1.25rem !important;
+}
+
+/* ── 2. State fokus & terbuka ────────────────────────────────────────────── */
+
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open  .select2-selection--single {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 1px #16a34a !important;
+    outline: none !important;
+}
+
+/* ── 3. Kotak dropdown ───────────────────────────────────────────────────── */
+
+.select2-dropdown {
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    background-color: #ffffff !important;
+    z-index: 9999 !important;
+}
+
+/* ── 4. Kolom pencarian dalam dropdown ───────────────────────────────────── */
+
+.select2-search--dropdown {
+    padding: 0.5rem !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+    width: 100% !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0.375rem !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+}
+
+.select2-search--dropdown .select2-search__field:focus {
+    border-color: #16a34a !important;
+    box-shadow: 0 0 0 1px #16a34a !important;
+}
+
+/* ── 5. Daftar opsi ──────────────────────────────────────────────────────── */
+
+.select2-results__options {
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+.select2-results__option {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+    cursor: pointer !important;
+}
+
+/* Opsi di-hover */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #16a34a !important;
+    color: #ffffff !important;
+}
+
+/* Opsi sudah terpilih */
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #dcfce7 !important;
+    color: #166534 !important;
+}
+
+/* ── 6. Tombol clear (×) ─────────────────────────────────────────────────── */
+/*
+   Pakai position:absolute relatif ke .select2-selection--single (yang punya
+   position:relative), bukan float:right di dalam __rendered.
+   Ini menghindari konflik dengan overflow:hidden pada __rendered dan
+   memastikan × selalu tampil di posisi yang benar.
+*/
+
+.select2-container--default .select2-selection--single .select2-selection__clear {
+    position: absolute !important;
+    top: 50% !important;
+    right: 1.5rem !important;        /* di kiri tombol panah ▾ */
+    transform: translateY(-50%) !important;
+    float: none !important;          /* override float:right bawaan Select2 */
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #e5e7eb !important;
+    border-radius: 9999px !important;
+    color: #6b7280 !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    z-index: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear:hover {
+    background-color: #d1d5db !important;
+    color: #374151 !important;
+}
+
+/* ==========================================================================
+   INPUT NATIVE — Konsisten dengan Select2
+   ========================================================================== */
+
+/*
+   Semua <input type="text|email|password|number|search">
+   mendapat tampilan yang seragam dengan Select2 dropdown.
+   Ring pada :focus menggunakan box-shadow agar tidak memuai border.
+*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"] {
+    height: 2.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="search"]::placeholder {
+    color: #9ca3af;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 1px #16a34a;
+    outline: none;
+}

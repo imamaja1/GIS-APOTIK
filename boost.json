@@ -1,0 +1,10 @@
+{
+    "agents": [
+        "zed"
+    ],
+    "cloud": false,
+    "skills": [
+        "laravel-best-practices",
+        "tailwindcss-development"
+    ]
+}
