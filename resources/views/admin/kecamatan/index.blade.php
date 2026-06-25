@@ -224,28 +224,22 @@
 
     // ===== Fungsi Modal Hapus =====
     function bukaModalHapus(id, nama, apotekCount) {
-        document.getElementById('hapus-nama').textContent = nama;
-        document.getElementById('form-hapus').action = '/admin/kecamatan/' + id;
-
-        var warningEl = document.getElementById('hapus-warning');
-        var btnHapus = document.getElementById('btn-hapus');
-
         if (apotekCount > 0) {
-            warningEl.textContent = 'Kecamatan ini memiliki ' + apotekCount + ' apotek dan tidak dapat dihapus.';
-            warningEl.classList.remove('hidden');
-            btnHapus.disabled = true;
-            btnHapus.classList.add('opacity-50', 'cursor-not-allowed');
-        } else {
-            warningEl.classList.add('hidden');
-            btnHapus.disabled = false;
-            btnHapus.classList.remove('opacity-50', 'cursor-not-allowed');
+            Swal.fire({
+                icon: 'warning',
+                title: 'Tidak Bisa Dihapus!',
+                text: 'Kecamatan "' + nama + '" memiliki ' + apotekCount + ' apotek dan tidak dapat dihapus.',
+                confirmButtonColor: '#16a34a',
+                confirmButtonText: 'Mengerti'
+            });
+            return;
         }
 
-        showModal('modal-hapus');
-    }
-
-    function tutupModalHapus() {
-        hideModal('modal-hapus');
+        confirmDelete(nama, function() {
+            var form = document.getElementById('form-hapus');
+            form.action = '/admin/kecamatan/' + id;
+            form.submit();
+        });
     }
 
     // ===== Fungsi Modal Generic =====
@@ -264,6 +258,12 @@
     // ===== Submit Form =====
     function submitForm() {
         var form = document.getElementById('form-kecamatan');
+
+        // Validasi HTML5 (required field)
+        if (!form.reportValidity()) {
+            return;
+        }
+
         var formData = new FormData(form);
         var url = form.action;
         var method = document.getElementById('form-method').value;
@@ -280,7 +280,8 @@
         .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
-            window.location.reload();
+            alertSuccess(data.message || 'Data berhasil disimpan.');
+            setTimeout(function() { window.location.reload(); }, 1500);
         })
         .catch(function(errors) {
             var errorEl = document.getElementById('form-errors');

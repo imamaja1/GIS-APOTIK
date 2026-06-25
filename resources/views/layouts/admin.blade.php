@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('styles')
 </head>
@@ -104,15 +105,15 @@
                 <p class="md:hidden text-sm font-semibold text-green-700">ADMIN GIS APOTIK</p>
 
                 <div class="ml-auto">
-                    <form method="POST" action="{{ route('logout') }}">
+                    <button type="button" onclick="confirmLogout()"
+                        class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg border border-gray-200 hover:border-red-200 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
+                        </svg>
+                        Log Out
+                    </button>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
                         @csrf
-                        <button type="submit"
-                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg border border-gray-200 hover:border-red-200 transition">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
-                            </svg>
-                            Log Out
-                        </button>
                     </form>
                 </div>
             </header>
@@ -175,6 +176,62 @@
                 throw { message: 'Redirect. Silakan refresh halaman.' };
             }
             throw { message: 'Server mengembalikan respons yang tidak valid. Silakan coba lagi.' };
+        }
+
+        // ===== SweetAlert2 Helpers =====
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Yakin ingin keluar?',
+                text: 'Anda akan logout dari panel admin.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+
+        function alertSuccess(message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: message,
+                timer: 2000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
+        }
+
+        function alertError(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: message
+            });
+        }
+
+        function confirmDelete(nama, callback) {
+            Swal.fire({
+                title: 'Hapus Data?',
+                html: 'Data <strong>' + nama + '</strong> akan dihapus permanen.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    callback();
+                }
+            });
         }
     </script>
 

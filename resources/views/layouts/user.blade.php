@@ -15,6 +15,7 @@
 
     {{-- Select2 CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('styles')
 </head>
@@ -111,17 +112,17 @@
                 </a>
 
                 <div class="pt-2 border-t border-green-700">
-                    <form method="POST" action="{{ route('logout') }}">
+                    <button type="button" onclick="confirmLogout()"
+                        class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 transition text-left">
+                        <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        Log Out
+                    </button>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
                         @csrf
-                        <button type="submit"
-                            class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 transition text-left">
-                            <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            Log Out
-                        </button>
                     </form>
                 </div>
             </div>
@@ -208,6 +209,36 @@
                 throw { message: 'Redirect. Silakan refresh halaman.' };
             }
             throw { message: 'Server mengembalikan respons yang tidak valid. Silakan coba lagi.' };
+        }
+
+        // ===== SweetAlert2 Helpers =====
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Yakin ingin keluar?',
+                text: 'Anda akan logout dari akun Anda.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+
+        function alertSuccess(message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: message,
+                timer: 2000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            });
         }
     </script>
 

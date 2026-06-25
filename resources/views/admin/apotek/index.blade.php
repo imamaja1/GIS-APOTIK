@@ -219,17 +219,19 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                             <h2 class="text-sm font-semibold text-gray-700 mb-3">Jam Operasional</h2>
                             <div class="space-y-2">
                                 @foreach ($days as $day)
-                                <div class="grid grid-cols-[80px_2fr_4fr_4fr] gap-2 items-center rounded-lg bg-white p-2.5 border border-gray-200">
-                                    <span class="text-xs font-medium text-gray-700">{{ $day }}</span>
-                                    <select name="jam_operasional[{{ $day }}][status_buka]"
-                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                                        <option value="Buka">Buka</option>
-                                        <option value="Tutup">Tutup</option>
-                                    </select>
-                                    <input type="time" name="jam_operasional[{{ $day }}][jam_buka]" value=""
-                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
-                                    <input type="time" name="jam_operasional[{{ $day }}][jam_tutup]" value=""
-                                        class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                                <div class="flex flex-col md:flex-row md:items-center gap-2 rounded-lg bg-white p-2.5 border border-gray-200">
+                                    <span class="text-xs font-medium text-gray-700 shrink-0 md:w-[70px]">{{ $day }}</span>
+                                    <div class="flex items-center gap-2 flex-1 min-w-0">
+                                        <select name="jam_operasional[{{ $day }}][status_buka]" required
+                                            class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 flex-1 min-w-0">
+                                            <option value="Buka">Buka</option>
+                                            <option value="Tutup">Tutup</option>
+                                        </select>
+                                        <input type="time" name="jam_operasional[{{ $day }}][jam_buka]" value=""
+                                            class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 flex-1 min-w-0">
+                                        <input type="time" name="jam_operasional[{{ $day }}][jam_tutup]" value=""
+                                            class="h-8 rounded-lg border border-gray-300 bg-white px-2 text-xs text-gray-700 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 flex-1 min-w-0">
+                                    </div>
                                 </div>
                                 @endforeach
                             </div>
@@ -435,13 +437,11 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
     // ===== Fungsi Modal Hapus =====
     function bukaModalHapus(id, nama) {
-        document.getElementById('hapus-nama').textContent = nama;
-        document.getElementById('form-hapus').action = '/admin/apotek/' + id;
-        showModal('modal-hapus');
-    }
-
-    function tutupModalHapus() {
-        hideModal('modal-hapus');
+        confirmDelete(nama, function() {
+            var form = document.getElementById('form-hapus');
+            form.action = '/admin/apotek/' + id;
+            form.submit();
+        });
     }
 
     // ===== Fungsi Modal Generic =====
@@ -523,6 +523,12 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
     // ===== Submit Form =====
     function submitForm() {
         var form = document.getElementById('form-apotek');
+
+        // Validasi HTML5 (required field)
+        if (!form.reportValidity()) {
+            return;
+        }
+
         var formData = new FormData(form);
         var url = form.action;
         var method = document.getElementById('form-method').value;
@@ -540,7 +546,8 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
-            window.location.reload();
+            alertSuccess(data.message || 'Data berhasil disimpan.');
+            setTimeout(function() { window.location.reload(); }, 1500);
         })
         .catch(function(errors) {
             var errorEl = document.getElementById('form-errors');
