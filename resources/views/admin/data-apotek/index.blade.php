@@ -2,32 +2,6 @@
 
 @section('title', 'Data Apotik (Read Only)')
 
-@push('styles')
-<style>
-    .pagination-white .inline-flex,
-    .pagination-white .inline-flex:hover,
-    .pagination-white .inline-flex:focus,
-    .pagination-white .inline-flex:active,
-    .pagination-white span.inline-flex {
-        background-color: #ffffff !important;
-        color: #111827 !important;
-        border-color: #d1d5db !important;
-    }
-
-    .pagination-white .inline-flex:hover,
-    .pagination-white .inline-flex:focus {
-        background-color: #f8fafc !important;
-        color: #111827 !important;
-    }
-
-    .pagination-white .inline-flex[aria-current="page"] span,
-    .pagination-white span[aria-disabled="true"] span {
-        background-color: #f3f4f6 !important;
-        color: #111827 !important;
-    }
-</style>
-@endpush
-
 @section('content')
 <div class="space-y-4">
 
