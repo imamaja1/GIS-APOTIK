@@ -4,15 +4,12 @@
 
 @section('content')
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+    <div class="mb-5">
+        <h1 class="text-lg font-semibold text-gray-800">Apotek KLU</h1>
+        <p class="text-sm text-gray-400 mt-0.5">Total: {{ $apotek->total() }} apotek ditemukan</p>
+    </div>
 
-        {{-- Header --}}
-        <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-            <div>
-                <h1 class="text-base font-semibold text-gray-800">Apotek KLU</h1>
-                <p class="text-xs text-gray-400 mt-0.5">Total: {{ $apotek->total() }} apotek ditemukan</p>
-            </div>
-        </div>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
 
         {{-- Filter --}}
         <div class="px-6 py-4 bg-gray-50 border-b border-gray-100">
