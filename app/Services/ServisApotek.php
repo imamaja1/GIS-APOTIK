@@ -128,4 +128,14 @@ class ServisApotek
         return Jalan::orderBy('nama_jalan')
             ->get(['id', 'nama_jalan', 'latitude_center', 'longitude_center']);
     }
+
+    /**
+     * Tandai status buka/tutup setiap item di koleksi paginator.
+     */
+    public function markOpenStatus(LengthAwarePaginator $paginator): LengthAwarePaginator
+    {
+        $paginator->getCollection()->transform(fn (Apotek $item) => tap($item, fn () => $item->is_open_now = $this->isOpenNow($item)));
+
+        return $paginator;
+    }
 }

@@ -22,14 +22,10 @@ class AdminApotekController extends Controller
         $kecamatanId = $request->integer('kecamatan_id') ?: null;
         $search = $request->string('search')->trim()->toString() ?: null;
 
-        $apotek = $this->servisApotek->getApotekList($kecamatanId, $search);
+        $apotek = $this->servisApotek->markOpenStatus(
+            $this->servisApotek->getApotekList($kecamatanId, $search)
+        );
         $kecamatanList = $this->servisKecamatan->getAll();
-
-        $apotek->getCollection()->transform(function ($item) {
-            $item->is_open_now = $this->servisApotek->isOpenNow($item);
-
-            return $item;
-        });
 
         return view('admin.data-apotek.index', compact('apotek', 'kecamatanList', 'kecamatanId', 'search'));
     }

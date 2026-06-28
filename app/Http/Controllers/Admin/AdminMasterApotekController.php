@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreApotekRequest;
+use App\Http\Requests\UpdateApotekRequest;
 use App\Models\Apotek;
 use App\Models\Kecamatan;
 use Illuminate\Http\JsonResponse;
@@ -35,21 +37,9 @@ class AdminMasterApotekController extends Controller
         return view('admin.apotek.create', compact('kecamatanList'));
     }
 
-    public function store(Request $request): JsonResponse|RedirectResponse
+    public function store(StoreApotekRequest $request): JsonResponse|RedirectResponse
     {
-        $data = $request->validate([
-            'kecamatan_id' => ['required', 'exists:tb_kecamatan,id'],
-            'nama_apotek' => ['required', 'string', 'max:150'],
-            'jalan_apotek' => ['required', 'string', 'max:150'],
-            'alamat_lengkap' => ['required', 'string'],
-            'no_telp' => ['nullable', 'string', 'max:20'],
-            'latitude' => ['required', 'numeric', 'between:-90,90'],
-            'longitude' => ['required', 'numeric', 'between:-180,180'],
-            'jam_operasional' => ['required', 'array', 'size:7'],
-            'jam_operasional.*.status_buka' => ['required', 'in:Buka,Tutup'],
-            'jam_operasional.*.jam_buka' => ['nullable', 'required_if:jam_operasional.*.status_buka,Buka', 'date_format:H:i'],
-            'jam_operasional.*.jam_tutup' => ['nullable', 'required_if:jam_operasional.*.status_buka,Buka', 'date_format:H:i'],
-        ]);
+        $data = $request->validated();
 
         $apotek = Apotek::create(
             collect($data)->only(['kecamatan_id', 'nama_apotek', 'jalan_apotek', 'alamat_lengkap', 'no_telp', 'latitude', 'longitude'])->toArray()
@@ -77,21 +67,9 @@ class AdminMasterApotekController extends Controller
         return view('admin.apotek.edit', compact('apotek', 'kecamatanList'));
     }
 
-    public function update(Request $request, Apotek $apotek): JsonResponse|RedirectResponse
+    public function update(UpdateApotekRequest $request, Apotek $apotek): JsonResponse|RedirectResponse
     {
-        $data = $request->validate([
-            'kecamatan_id' => ['required', 'exists:tb_kecamatan,id'],
-            'nama_apotek' => ['required', 'string', 'max:150'],
-            'jalan_apotek' => ['required', 'string', 'max:150'],
-            'alamat_lengkap' => ['required', 'string'],
-            'no_telp' => ['nullable', 'string', 'max:20'],
-            'latitude' => ['required', 'numeric', 'between:-90,90'],
-            'longitude' => ['required', 'numeric', 'between:-180,180'],
-            'jam_operasional' => ['required', 'array', 'size:7'],
-            'jam_operasional.*.status_buka' => ['required', 'in:Buka,Tutup'],
-            'jam_operasional.*.jam_buka' => ['nullable', 'required_if:jam_operasional.*.status_buka,Buka', 'date_format:H:i'],
-            'jam_operasional.*.jam_tutup' => ['nullable', 'required_if:jam_operasional.*.status_buka,Buka', 'date_format:H:i'],
-        ]);
+        $data = $request->validated();
 
         $apotek->update(
             collect($data)->only(['kecamatan_id', 'nama_apotek', 'jalan_apotek', 'alamat_lengkap', 'no_telp', 'latitude', 'longitude'])->toArray()
