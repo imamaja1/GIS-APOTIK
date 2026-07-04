@@ -52,14 +52,14 @@
                 {{-- Kanan: Desktop logout --}}
                 <div class="hidden lg:flex items-center">
                     <button type="button" onclick="confirmLogout()"
-                        class="px-4 py-2 text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 rounded-md transition border border-green-500">
+                        class="px-4 py-2 text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 rounded-md transition border border-green-500 cursor-pointer">
                         Log Out
                     </button>
                 </div>
 
                 {{-- Hamburger button (mobile) --}}
                 <button id="nav-hamburger" type="button" aria-label="Toggle menu"
-                    class="lg:hidden flex items-center justify-center w-9 h-9 rounded-md text-white hover:bg-green-700 transition">
+                    class="lg:hidden flex items-center justify-center w-9 h-9 rounded-md text-white hover:bg-green-700 transition cursor-pointer">
                     <svg id="icon-menu" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -105,7 +105,7 @@
 
                 <div class="pt-2 border-t border-green-700">
                     <button type="button" onclick="confirmLogout()"
-                        class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 transition text-left">
+                        class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 transition text-left cursor-pointer">
                         <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="2"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -168,7 +168,10 @@
         function parseJsonResponse(res) {
             var ct = res.headers.get('content-type') || '';
             if (ct.indexOf('application/json') !== -1) {
-                return res.json();
+                if (res.ok) {
+                    return res.json();
+                }
+                return res.json().then(function(data) { throw data; });
             }
             if (res.status === 419) {
                 throw { message: 'Session habis. Silakan login ulang.' };

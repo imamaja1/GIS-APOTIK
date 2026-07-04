@@ -28,7 +28,7 @@
                 <span class="text-gray-800 font-bold text-base tracking-wide">GIS APOTIK</span>
             </a>
             <button id="nav-hamburger" type="button" aria-label="Toggle menu"
-                class="flex items-center justify-center w-9 h-9 rounded-md text-gray-600 hover:bg-gray-100 transition">
+                class="flex items-center justify-center w-9 h-9 rounded-md text-gray-600 hover:bg-gray-100 transition cursor-pointer">
                 <svg id="icon-menu" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -67,7 +67,7 @@
                     Peta Apotik
                 </a>
                 <div class="pt-2 border-t border-gray-100">
-                    <button type="button" onclick="confirmLogout()" class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition text-left">
+                    <button type="button" onclick="confirmLogout()" class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
                         <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                         Log Out
                     </button>
@@ -159,13 +159,13 @@
     </aside>
 
     {{-- ===== CONTENT ===== --}}
-    <div class="pt-14 lg:pt-0 lg:ml-64 xl:ml-72 min-h-screen z-0 relative">
+    <div class="pt-14 lg:pt-0 lg:ml-64 xl:ml-72 min-h-screen relative">
 
         {{-- Desktop Header --}}
         <header
             class="hidden lg:flex h-16 border-b border-gray-300 bg-white px-8 xl:px-10 items-center justify-end">
             <button type="button" onclick="confirmLogout()"
-                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg border border-gray-200 hover:border-red-200 transition">
+                class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg border border-gray-200 hover:border-red-200 transition cursor-pointer">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
                 </svg>
@@ -223,7 +223,10 @@
         function parseJsonResponse(res) {
             var ct = res.headers.get('content-type') || '';
             if (ct.indexOf('application/json') !== -1) {
-                return res.json();
+                if (res.ok) {
+                    return res.json();
+                }
+                return res.json().then(function(data) { throw data; });
             }
             if (res.status === 419) {
                 throw { message: 'Session habis. Silakan login ulang.' };

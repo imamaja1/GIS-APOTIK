@@ -116,9 +116,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                     <a href="{{ route('admin.apotek.index') }}"
-                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-600 text-center hover:bg-gray-50">Batal</a>
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-600 text-center hover:bg-gray-50 cursor-pointer">Batal</a>
                     <button type="submit"
-                        class="flex-1 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium">Simpan</button>
+                        class="flex-1 px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium cursor-pointer">Simpan</button>
                 </div>
             </div>
         </form>

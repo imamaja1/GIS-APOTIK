@@ -29,11 +29,14 @@ class AdminKecamatanController extends Controller
 
         Kecamatan::create($data);
 
+        $message = 'Kecamatan berhasil ditambahkan.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Kecamatan berhasil ditambahkan.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil ditambahkan.');
+        return redirect()->route('admin.kecamatan.index')->with('success', $message);
     }
 
     public function edit(Kecamatan $kecamatan): JsonResponse
@@ -49,11 +52,14 @@ class AdminKecamatanController extends Controller
 
         $kecamatan->update($data);
 
+        $message = 'Kecamatan berhasil diperbarui.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Kecamatan berhasil diperbarui.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil diperbarui.');
+        return redirect()->route('admin.kecamatan.index')->with('success', $message);
     }
 
     public function destroy(Request $request, Kecamatan $kecamatan): JsonResponse|RedirectResponse
@@ -62,7 +68,8 @@ class AdminKecamatanController extends Controller
 
         if ($count > 0) {
             $message = 'Kecamatan memiliki ' . $count . ' apotek dan tidak dapat dihapus.';
-            
+            session()->flash('error', $message);
+
             if ($request->expectsJson()) {
                 return response()->json(['message' => $message], 422);
             }
@@ -72,10 +79,13 @@ class AdminKecamatanController extends Controller
 
         $kecamatan->delete();
 
+        $message = 'Kecamatan berhasil dihapus.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Kecamatan berhasil dihapus.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil dihapus.');
+        return redirect()->route('admin.kecamatan.index')->with('success', $message);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreApotekRequest;
 use App\Http\Requests\UpdateApotekRequest;
 use App\Models\Apotek;
 use App\Models\Kecamatan;
+use App\Services\ServisApotek;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,16 +15,22 @@ use Illuminate\View\View;
 
 class AdminMasterApotekController extends Controller
 {
+    public function __construct(
+        private ServisApotek $servisApotek,
+    ) {}
+
     public function index(Request $request): View
     {
         $search = $request->string('search')->trim()->toString();
 
-        $apotek = Apotek::query()
-            ->with('kecamatan:id,nama_kecamatan')
-            ->when($search !== '', fn ($q) => $q->where('nama_apotek', 'like', '%' . $search . '%'))
-            ->latest('id')
-            ->paginate(10)
-            ->withQueryString();
+        $apotek = $this->servisApotek->markOpenStatus(
+            Apotek::query()
+                ->with(['kecamatan:id,nama_kecamatan', 'jamOperasional'])
+                ->when($search !== '', fn ($q) => $q->where('nama_apotek', 'like', '%' . $search . '%'))
+                ->latest('id')
+                ->paginate(10)
+                ->withQueryString()
+        );
 
         $kecamatanList = Kecamatan::query()->orderBy('nama_kecamatan')->get(['id', 'nama_kecamatan']);
 
@@ -47,11 +54,14 @@ class AdminMasterApotekController extends Controller
 
         $apotek->jamOperasional()->createMany($this->formatJamOperasional($data['jam_operasional']));
 
+        $message = 'Data apotek berhasil ditambahkan.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Data apotek berhasil ditambahkan.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.apotek.index')->with('success', 'Data apotik berhasil ditambahkan.');
+        return redirect()->route('admin.apotek.index')->with('success', $message);
     }
 
     public function edit(Apotek $apotek): View|JsonResponse
@@ -78,11 +88,14 @@ class AdminMasterApotekController extends Controller
         $apotek->jamOperasional()->delete();
         $apotek->jamOperasional()->createMany($this->formatJamOperasional($data['jam_operasional']));
 
+        $message = 'Data apotek berhasil diperbarui.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Data apotek berhasil diperbarui.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.apotek.index')->with('success', 'Data apotik berhasil diperbarui.');
+        return redirect()->route('admin.apotek.index')->with('success', $message);
     }
 
     private function formatJamOperasional(array $jamOperasional): array
@@ -101,10 +114,13 @@ class AdminMasterApotekController extends Controller
     {
         $apotek->delete();
 
+        $message = 'Data apotek berhasil dihapus.';
+        session()->flash('success', $message);
+
         if ($request->expectsJson()) {
-            return response()->json(['message' => 'Data apotek berhasil dihapus.']);
+            return response()->json(['message' => $message]);
         }
 
-        return redirect()->route('admin.apotek.index')->with('success', 'Data apotik berhasil dihapus.');
+        return redirect()->route('admin.apotek.index')->with('success', $message);
     }
 }

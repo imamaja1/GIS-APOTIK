@@ -21,7 +21,7 @@
         </div>
 
         <button onclick="bukaModalTambah()"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition">
+            class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
@@ -31,18 +31,6 @@
 
     {{-- Card --}}
     <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-
-        @if (session('success'))
-        <div class="mx-6 mt-4 p-3 rounded-lg border border-green-200 bg-green-50 text-green-700 text-sm">
-            {{ session('success') }}
-        </div>
-        @endif
-
-        @if (session('error'))
-        <div class="mx-6 mt-4 p-3 rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm">
-            {{ session('error') }}
-        </div>
-        @endif
 
     <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -67,14 +55,14 @@
                     <td class="px-4 py-3 text-center">
                         <div class="flex items-center justify-center gap-1">
                             <button onclick="bukaModalEdit({{ $k->id }})"
-                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition"
+                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition cursor-pointer"
                                 title="Edit">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                                 </svg>
                             </button>
                             <button onclick="bukaModalHapus({{ $k->id }}, '{{ $k->nama_kecamatan }}', {{ $k->apotek_count }})"
-                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition"
+                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition cursor-pointer"
                                 title="Hapus">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/>
@@ -104,13 +92,13 @@
 </div>
 
 {{-- ===== Modal Tambah/Edit Kecamatan ===== --}}
-<div id="modal-form" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+<div id="modal-form" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
 
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
             <h3 id="modal-form-title" class="font-semibold text-gray-800">Tambah Kecamatan</h3>
             <button onclick="tutupModalForm()"
-                class="text-gray-400 hover:text-gray-600 transition p-1 rounded">
+                class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -137,11 +125,11 @@
 
         <div class="flex justify-end gap-2 px-6 py-4 border-t border-gray-100">
             <button onclick="tutupModalForm()"
-                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition">
+                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition cursor-pointer">
                 Batal
             </button>
             <button onclick="submitForm()" id="btn-submit"
-                class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition">
+                class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition cursor-pointer">
                 Simpan
             </button>
         </div>
@@ -149,7 +137,7 @@
 </div>
 
 {{-- ===== Modal Hapus ===== --}}
-<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
         <div class="p-6 text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
@@ -163,14 +151,14 @@
         </div>
         <div class="flex items-center justify-center gap-3 px-6 pb-6">
             <button onclick="tutupModalHapus()"
-                class="flex-1 px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition">
+                class="flex-1 px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition cursor-pointer">
                 Batal
             </button>
             <form id="form-hapus" method="POST" class="flex-1">
                 @csrf
                 @method('DELETE')
                 <button type="submit" id="btn-hapus"
-                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition">
+                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition cursor-pointer">
                     Hapus
                 </button>
             </form>
@@ -182,6 +170,13 @@
 
 @push('scripts')
 <script>
+    @if (session('success'))
+        alertSuccess(@json(session('success')));
+    @endif
+    @if (session('error'))
+        alertError(@json(session('error')));
+    @endif
+
     // ===== Fungsi Modal Form (Tambah/Edit) =====
     function bukaModalTambah() {
         document.getElementById('modal-form-title').textContent = 'Tambah Kecamatan';
@@ -280,8 +275,7 @@
         .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
-            alertSuccess(data.message || 'Data berhasil disimpan.');
-            setTimeout(function() { window.location.reload(); }, 1500);
+            window.location.reload();
         })
         .catch(function(errors) {
             var errorEl = document.getElementById('form-errors');
@@ -304,6 +298,10 @@
 
             errorEl.classList.remove('hidden');
         });
+    }
+
+    function tutupModalHapus() {
+        hideModal('modal-hapus');
     }
 
     // ===== Tutup modal jika klik backdrop =====

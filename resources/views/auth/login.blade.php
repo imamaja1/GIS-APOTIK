@@ -32,7 +32,7 @@
 
         {{-- Email --}}
         <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="email">
+            <label class="block text-sm font-medium text-gray-700 mb-1.5 cursor-pointer" for="email">
                 Email
             </label>
             <input
@@ -53,7 +53,7 @@
 
         {{-- Password --}}
         <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 mb-1.5" for="password">
+            <label class="block text-sm font-medium text-gray-700 mb-1.5 cursor-pointer" for="password">
                 Password
             </label>
             <input
@@ -78,7 +78,7 @@
             </a>
             <button
                 type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white px-8 py-2.5 rounded-lg text-sm font-medium transition">
+                class="bg-green-600 hover:bg-green-700 text-white px-8 py-2.5 rounded-lg text-sm font-medium transition cursor-pointer">
                 Submit
             </button>
         </div>

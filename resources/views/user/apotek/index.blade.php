@@ -45,12 +45,12 @@
                     {{-- Tombol Aksi --}}
                     <div class="flex items-end gap-2">
                         <button type="submit"
-                                class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap">
+                                class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap cursor-pointer">
                             Cari
                         </button>
                         @if ($kecamatanId || $search)
                             <a href="{{ route('user.data-apotek') }}"
-                               class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap">
+                               class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap cursor-pointer">
                                 Reset
                             </a>
                         @endif
@@ -108,7 +108,7 @@
                             <td class="px-4 py-3 text-center">
                                 <button
                                     onclick="bukaModal({{ $a->id }})"
-                                    class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-medium transition">
+                                    class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-medium transition cursor-pointer">
                                     Detail
                                 </button>
                             </td>
@@ -148,7 +148,7 @@
             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
                 <h3 class="font-semibold text-gray-800">Detail Apotek</h3>
                 <button onclick="tutupModal()"
-                        class="text-gray-400 hover:text-gray-600 transition p-1 rounded">
+                        class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -194,7 +194,7 @@
             {{-- Modal Footer --}}
             <div class="flex justify-end px-6 py-4 border-t border-gray-100 flex-shrink-0">
                 <button onclick="tutupModal()"
-                        class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2 rounded-lg text-sm font-medium transition">
+                        class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-5 py-2 rounded-lg text-sm font-medium transition cursor-pointer">
                     Close
                 </button>
             </div>

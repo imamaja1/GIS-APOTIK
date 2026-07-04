@@ -52,12 +52,12 @@
                     {{-- Tombol Aksi --}}
                     <div class="flex items-end gap-2">
                         <button type="submit"
-                            class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap">
+                            class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap cursor-pointer">
                             Cari
                         </button>
                         @if ($kecamatanId || $search)
                         <a href="{{ route('admin.data-apotek') }}"
-                            class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap">
+                            class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap cursor-pointer">
                             Reset
                         </a>
                         @endif
@@ -105,7 +105,7 @@
                         </td>
                         <td class="px-4 py-3 text-center">
                             <button onclick="bukaModalDetail({{ $a->id }})"
-                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 hover:bg-blue-100 transition"
+                                class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-blue-200 bg-blue-50 text-blue-600 hover:bg-blue-100 transition cursor-pointer"
                                 title="Detail">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">
@@ -145,13 +145,13 @@
 </div>
 
 {{-- ===== Modal Detail Apotek ===== --}}
-<div id="modal-detail" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+<div id="modal-detail" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
 
         {{-- Header --}}
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
             <h3 class="font-semibold text-gray-800">Detail Apotek</h3>
-            <button onclick="tutupModalDetail()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded">
+            <button onclick="tutupModalDetail()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -195,7 +195,7 @@
         {{-- Footer --}}
         <div class="flex justify-end px-5 py-3 border-t border-gray-100">
             <button onclick="tutupModalDetail()"
-                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition">
+                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition cursor-pointer">
                 Tutup
             </button>
         </div>

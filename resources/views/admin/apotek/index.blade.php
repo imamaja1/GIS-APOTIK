@@ -26,7 +26,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         </div>
 
         <button onclick="bukaModalTambah()"
-            class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition">
+            class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
@@ -36,12 +36,6 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
     {{-- Card --}}
     <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-
-        @if (session('success'))
-        <div class="mx-6 mt-4 p-3 rounded-lg border border-green-200 bg-green-50 text-green-700 text-sm">
-            {{ session('success') }}
-        </div>
-        @endif
 
         {{-- Filter --}}
         <div class="px-6 py-4 bg-gray-50 border-b border-gray-100">
@@ -54,12 +48,12 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                     </div>
                     <div class="flex items-end gap-2">
                         <button type="submit"
-                            class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap">
+                            class="h-10 px-5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition whitespace-nowrap cursor-pointer">
                             Cari
                         </button>
                         @if ($search)
                         <a href="{{ route('admin.apotek.index') }}"
-                            class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap">
+                            class="h-10 px-4 flex items-center border border-gray-300 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700 rounded-lg text-sm transition whitespace-nowrap cursor-pointer">
                             Reset
                         </a>
                         @endif
@@ -107,7 +101,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                         <td class="px-4 py-3 text-center">
                             <div class="flex items-center justify-center gap-1">
                                 <button onclick="bukaModalEdit({{ $a->id }})"
-                                    class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition"
+                                    class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition cursor-pointer"
                                     title="Edit">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                         viewBox="0 0 24 24">
@@ -115,8 +109,8 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                     </svg>
                                 </button>
-                                <button onclick="bukaModalHapus({{ $a->id }}, '{{ $a->nama_apotek }}')"
-                                    class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition"
+                                <button onclick='bukaModalHapus({{ $a->id }}, @json($a->nama_apotek))'
+                                    class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition cursor-pointer"
                                     title="Hapus">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                         viewBox="0 0 24 24">
@@ -149,13 +143,13 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 </div>
 
 {{-- ===== Modal Tambah/Edit Apotek ===== --}}
-<div id="modal-form" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+<div id="modal-form" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
 
         {{-- Modal Header --}}
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
             <h3 id="modal-form-title" class="font-semibold text-gray-800">Tambah Apotek</h3>
-            <button onclick="tutupModalForm()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded">
+            <button onclick="tutupModalForm()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -278,11 +272,11 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         {{-- Modal Footer --}}
         <div class="flex justify-end gap-2 px-6 py-4 border-t border-gray-100 flex-shrink-0">
             <button onclick="tutupModalForm()"
-                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition">
+                class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition cursor-pointer">
                 Batal
             </button>
             <button onclick="submitForm()" id="btn-submit"
-                class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition">
+                class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition cursor-pointer">
                 Simpan
             </button>
         </div>
@@ -290,7 +284,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 </div>
 
 {{-- ===== Modal Hapus ===== --}}
-<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
+<div id="modal-hapus" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-md">
         <div class="p-6 text-center">
             <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
@@ -306,14 +300,14 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         </div>
         <div class="flex items-center justify-center gap-3 px-6 pb-6">
             <button type="button" onclick="tutupModalHapus()"
-                class="flex-1 px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition">
+                class="flex-1 px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 border border-gray-400 rounded-lg text-sm font-medium transition cursor-pointer">
                 Batal
             </button>
             <form id="form-hapus" method="POST" class="flex-1">
                 @csrf
                 @method('DELETE')
                 <button type="submit"
-                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition">
+                    class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white border border-red-600 rounded-lg text-sm font-medium transition cursor-pointer">
                     Hapus
                 </button>
             </form>
@@ -325,6 +319,10 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
 @push('scripts')
 <script>
+    @if (session('success'))
+        alertSuccess(@json(session('success')));
+    @endif
+
     // ===== Data Kecamatan untuk Select =====
     var kecamatanList = @json($kecamatanList);
 
@@ -521,8 +519,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         .then(parseJsonResponse)
         .then(function(data) {
             tutupModalForm();
-            alertSuccess(data.message || 'Data berhasil disimpan.');
-            setTimeout(function() { window.location.reload(); }, 1500);
+            window.location.reload();
         })
         .catch(function(errors) {
             var errorEl = document.getElementById('form-errors');
@@ -545,6 +542,10 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
             errorEl.classList.remove('hidden');
         });
+    }
+
+    function tutupModalHapus() {
+        hideModal('modal-hapus');
     }
 
     // ===== Tutup modal jika klik backdrop =====
