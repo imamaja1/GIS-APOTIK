@@ -4,6 +4,7 @@
 
 @section('content')
 
+<div class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
     <div class="mb-5">
         <h1 class="text-lg font-semibold text-gray-800">Apotek KLU</h1>
         <p class="text-sm text-gray-400 mt-0.5">Total: {{ $apotek->total() }} apotek ditemukan</p>
@@ -202,6 +203,7 @@
         </div>
     </div>
 
+</div>
 @endsection
 
 @push('scripts')
@@ -224,7 +226,7 @@
         modal.classList.remove('hidden');
         modal.classList.add('flex');
 
-        fetch('/user/apotek/' + apotekId + '/detail', {
+        fetch('/apotek/' + apotekId + '/detail', {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
                 'Accept': 'application/json'

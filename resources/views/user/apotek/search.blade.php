@@ -4,6 +4,7 @@
 
 @section('content')
 
+<div class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
     <div class="mb-5">
         <h1 class="text-lg font-semibold text-gray-800">Search Apotek</h1>
         <p class="text-sm text-gray-400 mt-0.5">Temukan apotek dari titik awal menuju tujuan.</p>
@@ -50,6 +51,7 @@
         @include('partials.leaflet-map', ['mapId' => 'search-map', 'height' => '480px'])
     </div>
 
+</div>
 @endsection
 
 @push('scripts')

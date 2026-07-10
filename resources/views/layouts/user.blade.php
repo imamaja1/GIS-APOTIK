@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
                             <path
                                 d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                         </svg>
-                        <span class="text-white font-bold text-base tracking-wide">GIS APOTIK</span>
+                        <span class="text-white font-bold text-base tracking-wide">GIS APOTEK</span>
                     </a>
 
                     {{-- Desktop nav links --}}
@@ -49,12 +49,8 @@
                     </div>
                 </div>
 
-                {{-- Kanan: Desktop logout --}}
-                <div class="hidden lg:flex items-center">
-                    <button type="button" onclick="confirmLogout()"
-                        class="px-4 py-2 text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 rounded-md transition border border-green-500 cursor-pointer">
-                        Log Out
-                    </button>
+                {{-- Kanan: kosong --}}
+                <div class="hidden lg:flex items-center gap-1">
                 </div>
 
                 {{-- Hamburger button (mobile) --}}
@@ -103,28 +99,72 @@
                     Search Apotek
                 </a>
 
-                <div class="pt-2 border-t border-green-700">
-                    <button type="button" onclick="confirmLogout()"
-                        class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-green-100 hover:text-white hover:bg-green-700 transition text-left cursor-pointer">
-                        <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Log Out
-                    </button>
-                    <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
-                        @csrf
-                    </form>
-                </div>
             </div>
         </div>
     </nav>
 
     {{-- ===== CONTENT ===== --}}
-    <main class="px-4 lg:max-w-7xl lg:mx-auto lg:px-8 py-6">
+    <main>
         @yield('content')
     </main>
+
+    {{-- ===== FOOTER ===== --}}
+    <footer class="bg-green-800 text-white mt-12">
+        <div class="lg:max-w-7xl lg:mx-auto px-4 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {{-- Brand --}}
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <span class="font-bold text-base tracking-wide">GIS APOTEK KLU</span>
+                    </div>
+                    <p class="text-sm text-green-200 leading-relaxed">
+                        Sistem Informasi Geografis penyebaran apotek di Kabupaten Lombok Utara.
+                    </p>
+                </div>
+                {{-- Kontak --}}
+                <div>
+                    <h3 class="text-sm font-semibold text-white mb-3">Kontak</h3>
+                    <div class="space-y-2 text-sm text-green-200">
+                        <div class="flex items-start gap-2">
+                            <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                            <span>Jl. Prof. M. Yamin, Tanjung, Kabupaten Lombok Utara, NTB</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                            </svg>
+                            <span>info@lombokutarakab.go.id</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                            </svg>
+                            <span>(0370) 621234</span>
+                        </div>
+                    </div>
+                </div>
+                {{-- Tautan --}}
+                <div>
+                    <h3 class="text-sm font-semibold text-white mb-3">Tautan</h3>
+                    <div class="space-y-2 text-sm">
+                        <a href="{{ route('home') }}" class="block text-green-200 hover:text-white transition">Beranda</a>
+                        <a href="{{ route('user.data-apotek') }}" class="block text-green-200 hover:text-white transition">Data Apotek</a>
+                        <a href="{{ route('user.search-apotek') }}" class="block text-green-200 hover:text-white transition">Search Apotek</a>
+                    </div>
+                </div>
+            </div>
+            {{-- Copyright --}}
+            <div class="border-t border-green-700 mt-8 pt-6 text-center text-xs text-green-300">
+                &copy; {{ date('Y') }} GIS Apotek Kabupaten Lombok Utara. Hak cipta dilindungi.
+            </div>
+        </div>
+    </footer>
 
     {{-- ===== SCRIPTS ===== --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -183,24 +223,6 @@
         }
 
         // ===== SweetAlert2 Helpers =====
-        function confirmLogout() {
-            Swal.fire({
-                title: 'Yakin ingin keluar?',
-                text: 'Anda akan logout dari akun Anda.',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#dc2626',
-                cancelButtonColor: '#6b7280',
-                confirmButtonText: 'Ya, Logout',
-                cancelButtonText: 'Batal',
-                reverseButtons: true
-            }).then(function(result) {
-                if (result.isConfirmed) {
-                    document.getElementById('logout-form').submit();
-                }
-            });
-        }
-
         function alertSuccess(message) {
             Swal.fire({
                 icon: 'success',

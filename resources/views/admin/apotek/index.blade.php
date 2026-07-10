@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Master Data Apotik')
+@section('title', 'Master Data Apotek')
 
 @php
 $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -20,7 +20,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 </svg>
             </div>
             <div>
-                <h1 class="text-base font-semibold text-gray-800">Master Data Apotik</h1>
+                <h1 class="text-base font-semibold text-gray-800">Master Data Apotek</h1>
                 <p class="text-xs text-gray-400 mt-0.5">Kelola data apotek dengan CRUD lengkap.</p>
             </div>
         </div>
@@ -30,7 +30,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
-            Tambah Apotik
+            Tambah Apotek
         </button>
     </div>
 
@@ -68,7 +68,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 <thead>
                     <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                         <th class="px-4 py-3 font-semibold w-10">#</th>
-                        <th class="px-4 py-3 font-semibold">Nama Apotik</th>
+                        <th class="px-4 py-3 font-semibold">Nama Apotek</th>
                         <th class="px-4 py-3 font-semibold w-36">Kecamatan</th>
                         <th class="px-4 py-3 font-semibold text-center w-24">Status</th>
                         <th class="px-4 py-3 font-semibold text-center w-32">Aksi</th>
@@ -168,9 +168,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                     {{-- ===== KOLOM KIRI ===== --}}
                     <div class="space-y-4">
 
-                        {{-- Nama Apotik --}}
+                        {{-- Nama Apotek --}}
                         <div>
-                            <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
+                            <label class="block text-xs text-gray-500 mb-1">Nama Apotek</label>
                             <input type="text" name="nama_apotek" id="input-nama" required
                                 class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                         </div>
@@ -221,9 +221,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                             </select>
                         </div>
 
-                        {{-- Jalan Apotik --}}
+                        {{-- Jalan Apotek --}}
                         <div>
-                            <label class="block text-xs text-gray-500 mb-1">Jalan Apotik</label>
+                            <label class="block text-xs text-gray-500 mb-1">Jalan Apotek</label>
                             <input type="text" name="jalan_apotek" id="input-jalan" required
                                 class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                         </div>

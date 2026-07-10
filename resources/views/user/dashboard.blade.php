@@ -1,54 +1,161 @@
 @extends('layouts.user')
 
-@section('title', 'Dashboard — GIS Apotek KLU')
+@section('title', 'GIS Apotek Kabupaten Lombok Utara')
 
 @section('content')
 
-    {{-- Header --}}
-    <div class="flex items-center gap-3 mb-6">
-        <div class="w-10 h-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-            </svg>
-        </div>
-        <div>
-            <h1 class="text-base font-semibold text-gray-800">Dashboard</h1>
-            <p class="text-xs text-gray-400 mt-0.5">Ringkasan data apotek di Kabupaten Lombok Utara.</p>
-        </div>
-    </div>
+    {{-- ====================================================================== --}}
+    {{-- SECTION 1: HERO                                                       --}}
+    {{-- ====================================================================== --}}
+    <section id="hero" class="relative overflow-hidden bg-gradient-to-br from-green-600 via-green-700 to-green-800">
+        {{-- Dekorasi lingkaran --}}
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/5 rounded-full"></div>
+        <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-white/5 rounded-full"></div>
+        <div class="absolute top-1/2 right-1/4 w-24 h-24 bg-white/3 rounded-full"></div>
 
-    {{-- Statistik --}}
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div class="relative max-w-7xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h1 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                    SIG Apotek<br>Kabupaten Lombok Utara
+                </h1>
+                <p class="text-sm lg:text-base text-green-100 mt-4 max-w-xl mx-auto leading-relaxed">
+                    Sistem Informasi Geografis penyebaran apotek di Kabupaten Lombok Utara.
+                    Temukan lokasi apotek terdekat beserta informasi jam operasional dan kontak.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+                    <a href="{{ route('user.data-apotek') }}"
+                        class="w-full sm:w-auto px-8 py-3 bg-white text-green-700 hover:bg-green-50 text-sm font-semibold rounded-lg shadow-lg transition cursor-pointer">
+                        Data Apotek
+                    </a>
+                    <a href="{{ route('user.search-apotek') }}"
+                        class="w-full sm:w-auto px-8 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 text-sm font-semibold rounded-lg transition cursor-pointer">
+                        Search Apotek
+                    </a>
+                </div>
+            </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 text-center">
-            <div class="text-3xl font-bold text-green-600">{{ $stats['total_kecamatan'] }}</div>
-            <div class="text-xs text-gray-400 font-medium uppercase tracking-wide mt-1">Kecamatan KLU</div>
+            {{-- Statistik --}}
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/10">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-green-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-white">{{ $stats['total_kecamatan'] }}</div>
+                    <div class="text-xs text-green-200 font-medium uppercase tracking-wide mt-2">Kecamatan KLU</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/10">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-green-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                        </svg>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-white">{{ $stats['total_apotek'] }}</div>
+                    <div class="text-xs text-green-200 font-medium uppercase tracking-wide mt-2">Total Apotek</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/10">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-green-200" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-white">{{ $stats['apotek_buka'] }}</div>
+                    <div class="text-xs text-green-200 font-medium uppercase tracking-wide mt-2">Apotek Buka</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/10">
+                    <div class="flex justify-center mb-3">
+                        <svg class="w-7 h-7 text-red-300" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                    </div>
+                    <div class="text-3xl lg:text-4xl font-bold text-red-300">{{ $stats['apotek_tutup'] }}</div>
+                    <div class="text-xs text-green-200 font-medium uppercase tracking-wide mt-2">Apotek Tutup</div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 text-center">
-            <div class="text-3xl font-bold text-green-600">{{ $stats['total_apotek'] }}</div>
-            <div class="text-xs text-gray-400 font-medium uppercase tracking-wide mt-1">Total Apotek</div>
+    {{-- ====================================================================== --}}
+    {{-- SECTION 2: TENTANG                                                    --}}
+    {{-- ====================================================================== --}}
+    <section id="tentang" class="py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                {{-- Kiri: Teks --}}
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-1.5 h-10 bg-green-600 rounded-full"></div>
+                        <h2 class="text-2xl lg:text-3xl font-bold text-gray-800">Tentang</h2>
+                    </div>
+                    <p class="text-base text-gray-600 leading-relaxed">
+                        Sistem Informasi Geografis (SIG) Apotek Kabupaten Lombok Utara adalah aplikasi yang menyediakan informasi
+                        lokasi penyebaran apotek di wilayah Kabupaten Lombok Utara. Aplikasi ini membantu masyarakat menemukan
+                        apotek terdekat beserta informasi jam operasional, alamat, dan kontak yang dapat dihubungi.
+                        Dengan integrasi peta interaktif, pengguna dapat dengan mudah melihat sebaran apotek di setiap kecamatan
+                        dan merencanakan rute perjalanan menuju apotek yang dituju.
+                    </p>
+                </div>
+                {{-- Kanan: Fitur --}}
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75L3.75 5.25v12L9 18.75m0-12l6 1.5m-6-1.5v12m6-10.5l5.25-1.5v12L15 20.25m0-12v12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-800">Peta Interaktif</h3>
+                        <p class="text-xs text-gray-400 mt-1.5">Lokasi apotek di peta</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-800">Jam Operasional</h3>
+                        <p class="text-xs text-gray-400 mt-1.5">Info buka & tutup</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-800">Pencarian</h3>
+                        <p class="text-xs text-gray-400 mt-1.5">Cari apotek terdekat</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-sm font-semibold text-gray-800">Lokasi Detail</h3>
+                        <p class="text-xs text-gray-400 mt-1.5">Alamat & kontak</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 text-center">
-            <div class="text-3xl font-bold text-green-600">{{ $stats['apotek_buka'] }}</div>
-            <div class="text-xs text-gray-400 font-medium uppercase tracking-wide mt-1">Apotek Buka</div>
+    {{-- ====================================================================== --}}
+    {{-- SECTION 3: PETA APOTEK                                                --}}
+    {{-- ====================================================================== --}}
+    <section id="peta-apotek" class="py-16 lg:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-1.5 h-10 bg-green-600 rounded-full"></div>
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800">Peta Apotek</h2>
+            </div>
+            <p class="text-sm text-gray-500 mb-8">Sebaran lokasi apotek di Kabupaten Lombok Utara.</p>
+            <div class="rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                @include('partials.leaflet-map', ['mapId' => 'dashboard-map', 'height' => '550px'])
+            </div>
         </div>
-
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 text-center">
-            <div class="text-3xl font-bold text-red-500">{{ $stats['apotek_tutup'] }}</div>
-            <div class="text-xs text-gray-400 font-medium uppercase tracking-wide mt-1">Apotek Tutup</div>
-        </div>
-
-    </div>
-
-    {{-- Peta --}}
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div class="px-5 py-4 border-b border-gray-100">
-            <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">Peta KLU dan Apotek</h2>
-        </div>
-        @include('partials.leaflet-map', ['mapId' => 'dashboard-map', 'height' => '500px'])
-    </div>
+    </section>
 
 @endsection
 

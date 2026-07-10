@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Apotik (Read Only)')
+@section('title', 'Data Apotek (Read Only)')
 
 @section('content')
 <div class="space-y-4">
@@ -15,7 +15,7 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Data Apotik</h1>
+            <h1 class="text-base font-semibold text-gray-800">Data Apotek</h1>
             <p class="text-xs text-gray-400 mt-0.5">Halaman ini hanya untuk melihat data (read-only).</p>
         </div>
     </div>
@@ -73,7 +73,7 @@
                 <thead>
                     <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                         <th class="px-4 py-3 font-semibold w-10">#</th>
-                        <th class="px-4 py-3 font-semibold">Nama Apotik</th>
+                        <th class="px-4 py-3 font-semibold">Nama Apotek</th>
                         <th class="px-4 py-3 font-semibold w-36">Kecamatan</th>
                         <th class="px-4 py-3 font-semibold text-center w-24">Status</th>
                         <th class="px-4 py-3 font-semibold text-center w-20">Aksi</th>

@@ -11,15 +11,13 @@ use App\Http\Controllers\Admin\AdminMasterApotekController;
 use App\Http\Controllers\Admin\AdminSearchController;
 use Illuminate\Support\Facades\Route;
 
-// Redirect root ke login
-Route::get('/', fn () => redirect()->route('login'));
+// Home page = User dashboard (publik, tanpa login)
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-// ===== Auth Routes (hanya untuk tamu) =====
+// ===== Auth Routes (hanya untuk tamu admin) =====
 Route::middleware(['guest:web,admin'])->group(function () {
     Route::get('/login',    [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login',   [AuthController::class, 'login'])->name('login.post');
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-    Route::post('/register',[AuthController::class, 'register'])->name('register.post');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -53,8 +51,8 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
 });
 
-// ===== Panel User (harus login) =====
-Route::middleware('auth')->prefix('user')->name('user.')->group(function () {
+// ===== Panel User (publik, tanpa login) =====
+Route::name('user.')->group(function () {
     Route::get('/dashboard',   [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/data-apotek', [ApotekController::class, 'index'])->name('data-apotek');
     Route::get('/search-apotek', [ApotekController::class, 'search'])->name('search-apotek');

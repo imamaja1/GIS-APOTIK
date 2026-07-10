@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Search Apotik Admin')
+@section('title', 'Search Apotek Admin')
 
 @section('content')
 <div class="space-y-4">
@@ -12,8 +12,8 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Search Apotik</h1>
-            <p class="text-xs text-gray-400 mt-0.5">Temukan apotik dari titik awal menuju titik tujuan.</p>
+            <h1 class="text-base font-semibold text-gray-800">Search Apotek</h1>
+            <p class="text-xs text-gray-400 mt-0.5">Temukan apotek dari titik awal menuju titik tujuan.</p>
         </div>
     </div>
 

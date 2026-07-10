@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tambah Apotik')
+@section('title', 'Tambah Apotek')
 
 @section('content')
 @php
@@ -11,7 +11,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
     <div class="rounded-2xl border border-gray-200 bg-white p-6">
         <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
             <div>
-                <h1 class="text-2xl font-semibold text-gray-700">Tambah Apotik</h1>
+                <h1 class="text-2xl font-semibold text-gray-700">Tambah Apotek</h1>
                 <p class="text-sm text-gray-500">Isi data apotek dan jadwal operasional harian di sini.</p>
             </div>
         </div>
@@ -22,7 +22,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             <div class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Apotik</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Apotek</label>
                         <input type="text" name="nama_apotek" value="{{ old('nama_apotek') }}" required
                             class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                     </div>
@@ -43,7 +43,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Jalan Apotik</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jalan Apotek</label>
                     <input type="text" name="jalan_apotek" value="{{ old('jalan_apotek') }}" required
                         class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login — GIS Apotek KLU')
+@section('title', 'Login Admin — GIS Apotek KLU')
 
 @section('form')
     <div class="mb-8">
@@ -14,7 +14,7 @@
                 </svg>
             </div>
             <div>
-                <h1 class="text-2xl font-bold text-gray-800">Login</h1>
+                <h1 class="text-2xl font-bold text-gray-800">Login Admin</h1>
                 <p class="text-gray-500 text-sm">SIG Penyebaran Apotek KLU</p>
             </div>
         </div>
@@ -71,11 +71,7 @@
             @enderror
         </div>
 
-        <div class="flex items-center justify-between">
-            <a href="{{ route('register') }}"
-               class="text-sm text-green-600 hover:text-green-700 hover:underline">
-                Registrasi
-            </a>
+        <div class="flex items-center justify-end">
             <button
                 type="submit"
                 class="bg-green-600 hover:bg-green-700 text-white px-8 py-2.5 rounded-lg text-sm font-medium transition cursor-pointer">

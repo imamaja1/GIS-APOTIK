@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Apotik')
+@section('title', 'Edit Apotek')
 
 @section('content')
 @php
@@ -12,7 +12,7 @@ $jamOperasional = $apotek->jamOperasional->keyBy('hari');
     <div class="rounded-2xl border border-gray-200 bg-white p-6">
         <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
             <div>
-                <h1 class="text-2xl font-semibold text-gray-700">Edit Apotik</h1>
+                <h1 class="text-2xl font-semibold text-gray-700">Edit Apotek</h1>
                 <p class="text-sm text-gray-500">Perbarui data apotek dan jadwal operasional harian.</p>
             </div>
         </div>
@@ -25,7 +25,7 @@ $jamOperasional = $apotek->jamOperasional->keyBy('hari');
             <div class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Apotik</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Apotek</label>
                         <input type="text" name="nama_apotek" value="{{ old('nama_apotek', $apotek->nama_apotek) }}"
                             required
                             class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
@@ -47,7 +47,7 @@ $jamOperasional = $apotek->jamOperasional->keyBy('hari');
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Jalan Apotik</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jalan Apotek</label>
                     <input type="text" name="jalan_apotek" value="{{ old('jalan_apotek', $apotek->jalan_apotek) }}"
                         required
                         class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">

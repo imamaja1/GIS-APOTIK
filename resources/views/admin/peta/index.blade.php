@@ -12,7 +12,7 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Peta Apotik</h1>
+            <h1 class="text-base font-semibold text-gray-800">Peta Apotek</h1>
             <p class="text-xs text-gray-400 mt-0.5">Sebaran lokasi apotek di Kabupaten Lombok Utara.</p>
         </div>
     </div>
