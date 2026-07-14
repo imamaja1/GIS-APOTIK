@@ -95,45 +95,10 @@
                         dan merencanakan rute perjalanan menuju apotek yang dituju.
                     </p>
                 </div>
-                {{-- Kanan: Fitur --}}
-                <div class="grid grid-cols-2 gap-5">
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
-                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75L3.75 5.25v12L9 18.75m0-12l6 1.5m-6-1.5v12m6-10.5l5.25-1.5v12L15 20.25m0-12v12" />
-                            </svg>
-                        </div>
-                        <h3 class="text-sm font-semibold text-gray-800">Peta Interaktif</h3>
-                        <p class="text-xs text-gray-400 mt-1.5">Lokasi apotek di peta</p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
-                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-sm font-semibold text-gray-800">Jam Operasional</h3>
-                        <p class="text-xs text-gray-400 mt-1.5">Info buka & tutup</p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
-                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-sm font-semibold text-gray-800">Pencarian</h3>
-                        <p class="text-xs text-gray-400 mt-1.5">Cari apotek terdekat</p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 text-center hover:shadow-md transition">
-                        <div class="w-14 h-14 mx-auto rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-4">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-sm font-semibold text-gray-800">Lokasi Detail</h3>
-                        <p class="text-xs text-gray-400 mt-1.5">Alamat & kontak</p>
-                    </div>
+                {{-- Kanan: Gambar --}}
+                <div class="hidden md:block">
+                    <img src="{{ asset('apotik.jpg') }}" alt="GIS Apotek"
+                        class="w-full h-auto rounded-xl shadow-md object-cover max-h-80">
                 </div>
             </div>
         </div>
