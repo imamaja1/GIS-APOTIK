@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Peta Apotek Admin')
+@section('title', 'Peta Apotik Admin')
 
 @section('content')
 <div class="space-y-4">
@@ -12,7 +12,7 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Peta Apotek</h1>
+            <h1 class="text-base font-semibold text-gray-800">Peta Apotik</h1>
             <p class="text-xs text-gray-400 mt-0.5">Sebaran lokasi apotek di Kabupaten Lombok Utara.</p>
         </div>
     </div>
@@ -32,17 +32,17 @@
 
 @push('scripts')
 <script>
-    const dataMapApotek = @json($apotekMap);
-        const mapApotek = initBaseMap('admin-map-apotek', {
+    const dataMapApotik = @json($apotekMap);
+        const mapApotik = initBaseMap('admin-map-apotek', {
             center: window.KLU_CENTER,
             zoom: 11,
         });
 
-        dataMapApotek.forEach(function (a) {
+        dataMapApotik.forEach(function (a) {
             if (!a.latitude || !a.longitude) return;
 
             L.marker([a.latitude, a.longitude], { icon: createMapIcon('green') })
-                .addTo(mapApotek)
+                .addTo(mapApotik)
                 .bindPopup(
                     '<div class="text-sm leading-5">' +
                         '<b>' + (a.nama_apotek || '-') + '</b>' +

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Search Apotek Admin')
+@section('title', 'Search Apotik Admin')
 
 @section('content')
 <div class="space-y-4">
@@ -12,7 +12,7 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Search Apotek</h1>
+            <h1 class="text-base font-semibold text-gray-800">Search Apotik</h1>
             <p class="text-xs text-gray-400 mt-0.5">Temukan apotek dari titik awal menuju titik tujuan.</p>
         </div>
     </div>
@@ -132,7 +132,7 @@
         language: {
             inputTooShort: function () { return 'Ketik minimal 2 karakter...'; },
             searching: function () { return 'Mencari...'; },
-            noResults: function () { return 'Apotek tidak ditemukan.'; },
+            noResults: function () { return 'Apotik tidak ditemukan.'; },
         },
     });
 

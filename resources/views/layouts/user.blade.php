@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'GIS Apotek KLU')</title>
+    <title>@yield('title', 'GIS Apotik KLU')</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -26,12 +26,12 @@
 
                 {{-- Kiri: Brand + Desktop nav links --}}
                 <div class="flex items-center gap-1">
-                    <a href="{{ route('user.dashboard') }}" class="flex items-center gap-2 shrink-0 mr-3">
+                    <a href="{{ route('home') }}" class="flex items-center gap-2 shrink-0 mr-3">
                         <svg class="w-5 h-5 text-green-200" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                         </svg>
-                        <span class="text-white font-bold text-base tracking-wide">GIS APOTEK</span>
+                        <span class="text-white font-bold text-base tracking-wide">GIS APOTIK</span>
                     </a>
 
                     {{-- Desktop nav links --}}
@@ -39,12 +39,12 @@
                         <a href="{{ route('user.data-apotek') }}"
                             class="px-4 py-2 text-sm font-medium text-white rounded-md transition
                                   {{ request()->routeIs('user.data-apotek') ? 'bg-green-800' : 'hover:bg-green-700' }}">
-                            Data Apotek
+                            Data Apotik
                         </a>
                         <a href="{{ route('user.search-apotek') }}"
                             class="px-4 py-2 text-sm font-medium text-white rounded-md transition
                                   {{ request()->routeIs('user.search-apotek') ? 'bg-green-800' : 'hover:bg-green-700' }}">
-                            Search Apotek
+                            Search Apotik
                         </a>
                     </div>
                 </div>
@@ -72,13 +72,13 @@
         {{-- Mobile menu --}}
         <div id="nav-mobile" class="hidden lg:hidden border-t border-green-700">
             <div class="px-4 py-3 space-y-1">
-                <a href="{{ route('user.dashboard') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white transition
-                          {{ request()->routeIs('user.dashboard') ? 'bg-green-800' : 'hover:bg-green-700' }}">
+                <a href="{{ route('home') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white transition
+                          {{ request()->routeIs('home') ? 'bg-green-800' : 'hover:bg-green-700' }}">
                     <svg class="w-4 h-4 opacity-70" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
                     </svg>
-                    Dashboard
+                    Beranda
                 </a>
                 <a href="{{ route('user.data-apotek') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white transition
                           {{ request()->routeIs('user.data-apotek') ? 'bg-green-800' : 'hover:bg-green-700' }}">
@@ -87,7 +87,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
-                    Data Apotek
+                    Data Apotik
                 </a>
                 <a href="{{ route('user.search-apotek') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-white transition
                           {{ request()->routeIs('user.search-apotek') ? 'bg-green-800' : 'hover:bg-green-700' }}">
@@ -96,7 +96,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    Search Apotek
+                    Search Apotik
                 </a>
 
             </div>
@@ -118,7 +118,7 @@
                         <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                         </svg>
-                        <span class="font-bold text-base tracking-wide">GIS APOTEK KLU</span>
+                        <span class="font-bold text-base tracking-wide">GIS APOTIK KLU</span>
                     </div>
                     <p class="text-sm text-green-200 leading-relaxed">
                         Sistem Informasi Geografis penyebaran apotek di Kabupaten Lombok Utara.
@@ -154,14 +154,14 @@
                     <h3 class="text-sm font-semibold text-white mb-3">Tautan</h3>
                     <div class="space-y-2 text-sm">
                         <a href="{{ route('home') }}" class="block text-green-200 hover:text-white transition">Beranda</a>
-                        <a href="{{ route('user.data-apotek') }}" class="block text-green-200 hover:text-white transition">Data Apotek</a>
-                        <a href="{{ route('user.search-apotek') }}" class="block text-green-200 hover:text-white transition">Search Apotek</a>
+                        <a href="{{ route('user.data-apotek') }}" class="block text-green-200 hover:text-white transition">Data Apotik</a>
+                        <a href="{{ route('user.search-apotek') }}" class="block text-green-200 hover:text-white transition">Search Apotik</a>
                     </div>
                 </div>
             </div>
             {{-- Copyright --}}
             <div class="border-t border-green-700 mt-8 pt-6 text-center text-xs text-green-300">
-                &copy; {{ date('Y') }} GIS Apotek Kabupaten Lombok Utara. Hak cipta dilindungi.
+                &copy; {{ date('Y') }} GIS Apotik Kabupaten Lombok Utara. Hak cipta dilindungi.
             </div>
         </div>
     </footer>

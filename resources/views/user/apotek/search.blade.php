@@ -1,12 +1,12 @@
 @extends('layouts.user')
 
-@section('title', 'Search Apotek — GIS Apotek KLU')
+@section('title', 'Search Apotik — GIS Apotik KLU')
 
 @section('content')
 
 <div class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
     <div class="mb-5">
-        <h1 class="text-lg font-semibold text-gray-800">Search Apotek</h1>
+        <h1 class="text-lg font-semibold text-gray-800">Search Apotik</h1>
         <p class="text-sm text-gray-400 mt-0.5">Temukan apotek dari titik awal menuju tujuan.</p>
     </div>
 
@@ -41,7 +41,7 @@
 
         </div>
 
-        {{-- Info Apotek Terpilih --}}
+        {{-- Info Apotik Terpilih --}}
         <div id="info-apotek" class="hidden mt-4 p-3 bg-green-50 border border-green-100 rounded-lg text-sm text-green-800">
         </div>
     </div>
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
         language: {
             inputTooShort: function () { return 'Ketik minimal 2 karakter...'; },
             searching:     function () { return 'Mencari...'; },
-            noResults:     function () { return 'Apotek tidak ditemukan.'; },
+            noResults:     function () { return 'Apotik tidak ditemukan.'; },
         },
     });
 

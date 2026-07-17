@@ -38,7 +38,7 @@
                 <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                     <th class="px-4 py-3 font-semibold w-10">#</th>
                     <th class="px-4 py-3 font-semibold">Nama Kecamatan</th>
-                    <th class="px-4 py-3 font-semibold text-center w-32">Jumlah Apotek</th>
+                    <th class="px-4 py-3 font-semibold text-center w-32">Jumlah Apotik</th>
                     <th class="px-4 py-3 font-semibold text-center w-32">Aksi</th>
                 </tr>
             </thead>

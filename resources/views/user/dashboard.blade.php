@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('title', 'GIS Apotek Kabupaten Lombok Utara')
+@section('title', 'GIS Apotik Kabupaten Lombok Utara')
 
 @section('content')
 
@@ -14,7 +14,7 @@
         <div class="relative w-full max-w-7xl mx-auto px-4 lg:px-8 py-16 lg:py-24">
             <div class="max-w-3xl mx-auto text-center mb-12">
                 <h1 class="text-3xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight drop-shadow-lg">
-                    SIG Apotek<br>Kabupaten Lombok Utara
+                    SIG Apotik<br>Kabupaten Lombok Utara
                 </h1>
                 <p class="text-sm lg:text-base text-white/90 mt-4 max-w-xl mx-auto leading-relaxed drop-shadow">
                     Sistem Informasi Geografis penyebaran apotek di Kabupaten Lombok Utara.
@@ -23,11 +23,11 @@
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
                     <a href="{{ route('user.data-apotek') }}"
                         class="w-full sm:w-auto px-8 py-3 bg-white text-green-700 hover:bg-green-50 text-sm font-semibold rounded-lg shadow-lg transition cursor-pointer">
-                        Data Apotek
+                        Data Apotik
                     </a>
                     <a href="{{ route('user.search-apotek') }}"
                         class="w-full sm:w-auto px-8 py-3 bg-white text-green-700 hover:bg-green-50 text-sm font-semibold rounded-lg shadow-lg transition cursor-pointer">
-                        Search Apotek
+                        Search Apotik
                     </a>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         </svg>
                     </div>
                     <div class="text-3xl lg:text-4xl font-bold text-white drop-shadow">{{ $stats['total_apotek'] }}</div>
-                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Total Apotek</div>
+                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Total Apotik</div>
                 </div>
                 <div class="bg-black/20 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/20">
                     <div class="flex justify-center mb-3">
@@ -60,7 +60,7 @@
                         </svg>
                     </div>
                     <div class="text-3xl lg:text-4xl font-bold text-white drop-shadow">{{ $stats['apotek_buka'] }}</div>
-                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Apotek Buka</div>
+                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Apotik Buka</div>
                 </div>
                 <div class="bg-black/20 backdrop-blur-sm rounded-xl p-5 lg:p-6 text-center border border-white/20">
                     <div class="flex justify-center mb-3">
@@ -69,7 +69,7 @@
                         </svg>
                     </div>
                     <div class="text-3xl lg:text-4xl font-bold text-red-300 drop-shadow">{{ $stats['apotek_tutup'] }}</div>
-                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Apotek Tutup</div>
+                    <div class="text-xs text-white/80 font-medium uppercase tracking-wide mt-2">Apotik Tutup</div>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                         <h2 class="text-2xl lg:text-3xl font-bold text-gray-800">Tentang</h2>
                     </div>
                     <p class="text-base text-gray-600 leading-relaxed">
-                        Sistem Informasi Geografis (SIG) Apotek Kabupaten Lombok Utara adalah aplikasi yang menyediakan informasi
+                        Sistem Informasi Geografis (SIG) Apotik Kabupaten Lombok Utara adalah aplikasi yang menyediakan informasi
                         lokasi penyebaran apotek di wilayah Kabupaten Lombok Utara. Aplikasi ini membantu masyarakat menemukan
                         apotek terdekat beserta informasi jam operasional, alamat, dan kontak yang dapat dihubungi.
                         Dengan integrasi peta interaktif, pengguna dapat dengan mudah melihat sebaran apotek di setiap kecamatan
@@ -97,7 +97,7 @@
                 </div>
                 {{-- Kanan: Gambar --}}
                 <div class="hidden md:block">
-                    <img src="{{ asset('apotik.jpg') }}" alt="GIS Apotek"
+                    <img src="{{ asset('apotik.jpg') }}" alt="GIS Apotik"
                         class="w-full h-auto rounded-xl shadow-md object-cover max-h-80">
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex items-center gap-3 mb-5">
                 <div class="w-1.5 h-10 bg-green-600 rounded-full"></div>
-                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800">Peta Apotek</h2>
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800">Peta Apotik</h2>
             </div>
             <p class="text-sm text-gray-500 mb-8">Sebaran lokasi apotek di Kabupaten Lombok Utara.</p>
             <div class="rounded-2xl shadow-sm border border-gray-100 overflow-hidden">

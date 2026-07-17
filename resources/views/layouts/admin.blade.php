@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin GIS Apotek KLU')</title>
+    <title>@yield('title', 'Admin GIS Apotik KLU')</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -25,7 +25,7 @@
                 <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
-                <span class="text-gray-800 font-bold text-base tracking-wide">GIS APOTEK</span>
+                <span class="text-gray-800 font-bold text-base tracking-wide">GIS APOTIK</span>
             </a>
             <button id="nav-hamburger" type="button" aria-label="Toggle menu"
                 class="flex items-center justify-center w-9 h-9 rounded-md text-gray-600 hover:bg-gray-100 transition cursor-pointer">
@@ -45,18 +45,18 @@
                 </a>
                 <a href="{{ route('admin.data-apotek') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 transition {{ request()->routeIs('admin.data-apotek') ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50' }}">
                     <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                    Data Apotek
+                    Data Apotik
                 </a>
                 <a href="{{ route('admin.search-apotek') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 transition {{ request()->routeIs('admin.search-apotek') ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50' }}">
                     <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    Search Apotek
+                    Search Apotik
                 </a>
                 <div class="pt-2 border-t border-gray-100">
                     <div class="px-3 py-1.5 text-[10px] uppercase tracking-wider text-gray-400 font-semibold">Master Data</div>
                 </div>
                 <a href="{{ route('admin.apotek.index') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 transition {{ request()->routeIs('admin.apotek.*') ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50' }}">
                     <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V9l7-4 7 4v12M9 13h6M9 17h6" /></svg>
-                    Apotek
+                    Apotik
                 </a>
                 <a href="{{ route('admin.kecamatan.index') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 transition {{ request()->routeIs('admin.kecamatan.*') ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50' }}">
                     <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014.5 9A15.3 15.3 0 0112 21a15.3 15.3 0 01-4.5-9A15.3 15.3 0 0112 3z" /></svg>
@@ -64,7 +64,7 @@
                 </a>
                 <a href="{{ route('admin.peta.index') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 transition {{ request()->routeIs('admin.peta.*') ? 'bg-green-50 text-green-700' : 'hover:bg-gray-50' }}">
                     <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75L3.75 5.25v12L9 18.75m0-12l6 1.5m-6-1.5v12m6-10.5l5.25-1.5v12L15 20.25m0-12v12" /></svg>
-Peta Apotek
+Peta Apotik
                 </a>
                 <div class="pt-2 border-t border-gray-100">
                     <button type="button" onclick="confirmLogout()" class="flex items-center gap-2 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition text-left cursor-pointer">
@@ -91,7 +91,7 @@ Peta Apotek
                     </svg>
                 </div>
             </div>
-            <h2 class="mt-4 text-3xl font-extrabold text-green-700 tracking-tight">GIS APOTEK</h2>
+            <h2 class="mt-4 text-3xl font-extrabold text-green-700 tracking-tight">GIS APOTIK</h2>
             <p class="mt-1 text-sm text-green-600/80 font-medium">Panel Admin</p>
         </div>
 
@@ -112,7 +112,7 @@ Peta Apotek
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M8.25 7.5h7.5M8.25 12h7.5M8.25 16.5h4.5" />
                 </svg>
-                Data Apotek
+                Data Apotik
             </a>
             <a href="{{ route('admin.search-apotek') }}"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition {{ request()->routeIs('admin.search-apotek') ? 'bg-green-100 text-green-700 font-semibold' : 'text-gray-600 hover:bg-green-50 hover:text-green-700' }}">
@@ -120,7 +120,7 @@ Peta Apotek
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                Search Apotek
+                Search Apotik
             </a>
 
             <div
@@ -136,7 +136,7 @@ Peta Apotek
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3 21h18M5 21V9l7-4 7 4v12M9 13h6M9 17h6" />
                 </svg>
-                Apotek
+                Apotik
             </a>
             <a href="{{ route('admin.kecamatan.index') }}"
                 class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition {{ request()->routeIs('admin.kecamatan.*') ? 'bg-green-100 text-green-700 font-semibold' : 'text-gray-600 hover:bg-green-50 hover:text-green-700' }}">
@@ -153,7 +153,7 @@ Peta Apotek
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9 6.75L3.75 5.25v12L9 18.75m0-12l6 1.5m-6-1.5v12m6-10.5l5.25-1.5v12L15 20.25m0-12v12" />
                 </svg>
-                Peta Apotek
+                Peta Apotik
             </a>
         </nav>
     </aside>

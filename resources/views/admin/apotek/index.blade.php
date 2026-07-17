@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Master Data Apotek')
+@section('title', 'Master Data Apotik')
 
 @php
 $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -20,7 +20,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 </svg>
             </div>
             <div>
-                <h1 class="text-base font-semibold text-gray-800">Master Data Apotek</h1>
+                <h1 class="text-base font-semibold text-gray-800">Master Data Apotik</h1>
                 <p class="text-xs text-gray-400 mt-0.5">Kelola data apotek dengan CRUD lengkap.</p>
             </div>
         </div>
@@ -30,7 +30,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
             </svg>
-            Tambah Apotek
+            Tambah Apotik
         </button>
     </div>
 
@@ -42,7 +42,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
             <form method="GET" action="{{ route('admin.apotek.index') }}">
                 <div class="flex flex-col sm:flex-row gap-3">
                     <div class="flex-1">
-                        <label class="block text-xs text-gray-500 mb-1">Cari Apotek</label>
+                        <label class="block text-xs text-gray-500 mb-1">Cari Apotik</label>
                         <input type="search" name="search" value="{{ $search }}" placeholder="Ketik nama apotek..."
                             class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                     </div>
@@ -68,7 +68,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                 <thead>
                     <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                         <th class="px-4 py-3 font-semibold w-10">#</th>
-                        <th class="px-4 py-3 font-semibold">Nama Apotek</th>
+                        <th class="px-4 py-3 font-semibold">Nama Apotik</th>
                         <th class="px-4 py-3 font-semibold w-36">Kecamatan</th>
                         <th class="px-4 py-3 font-semibold text-center w-24">Status</th>
                         <th class="px-4 py-3 font-semibold text-center w-32">Aksi</th>
@@ -142,13 +142,13 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
 </div>
 
-{{-- ===== Modal Tambah/Edit Apotek ===== --}}
+{{-- ===== Modal Tambah/Edit Apotik ===== --}}
 <div id="modal-form" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] flex flex-col">
 
         {{-- Modal Header --}}
         <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
-            <h3 id="modal-form-title" class="font-semibold text-gray-800">Tambah Apotek</h3>
+            <h3 id="modal-form-title" class="font-semibold text-gray-800">Tambah Apotik</h3>
             <button onclick="tutupModalForm()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -168,9 +168,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                     {{-- ===== KOLOM KIRI ===== --}}
                     <div class="space-y-4">
 
-                        {{-- Nama Apotek --}}
+                        {{-- Nama Apotik --}}
                         <div>
-                            <label class="block text-xs text-gray-500 mb-1">Nama Apotek</label>
+                            <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
                             <input type="text" name="nama_apotek" id="input-nama" required
                                 class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                         </div>
@@ -221,9 +221,9 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                             </select>
                         </div>
 
-                        {{-- Jalan Apotek --}}
+                        {{-- Jalan Apotik --}}
                         <div>
-                            <label class="block text-xs text-gray-500 mb-1">Jalan Apotek</label>
+                            <label class="block text-xs text-gray-500 mb-1">Jalan Apotik</label>
                             <input type="text" name="jalan_apotek" id="input-jalan" required
                                 class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                         </div>
@@ -294,7 +294,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
                         d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                 </svg>
             </div>
-            <h3 class="text-lg font-semibold text-gray-800 mb-1">Hapus Apotek?</h3>
+            <h3 class="text-lg font-semibold text-gray-800 mb-1">Hapus Apotik?</h3>
             <p class="text-sm text-gray-500">Data <strong id="hapus-nama" class="text-gray-700"></strong> akan dihapus
                 permanen.</p>
         </div>
@@ -333,7 +333,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
 
     // ===== Fungsi Modal Form (Tambah/Edit) =====
     function bukaModalTambah() {
-        document.getElementById('modal-form-title').textContent = 'Tambah Apotek';
+        document.getElementById('modal-form-title').textContent = 'Tambah Apotik';
         document.getElementById('form-apotek').reset();
         document.getElementById('form-method').value = 'POST';
         document.getElementById('form-apotek-id').value = '';
@@ -346,7 +346,7 @@ $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
     }
 
     function bukaModalEdit(id) {
-        document.getElementById('modal-form-title').textContent = 'Edit Apotek';
+        document.getElementById('modal-form-title').textContent = 'Edit Apotik';
         document.getElementById('form-method').value = 'PUT';
         document.getElementById('form-apotek-id').value = id;
         document.getElementById('form-errors').classList.add('hidden');

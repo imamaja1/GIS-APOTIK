@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Apotek (Read Only)')
+@section('title', 'Data Apotik (Read Only)')
 
 @section('content')
 <div class="space-y-4">
@@ -15,7 +15,7 @@
             </svg>
         </div>
         <div>
-            <h1 class="text-base font-semibold text-gray-800">Data Apotek</h1>
+            <h1 class="text-base font-semibold text-gray-800">Data Apotik</h1>
             <p class="text-xs text-gray-400 mt-0.5">Halaman ini hanya untuk melihat data (read-only).</p>
         </div>
     </div>
@@ -42,9 +42,9 @@
                         </select>
                     </div>
 
-                    {{-- Input Nama Apotek --}}
+                    {{-- Input Nama Apotik --}}
                     <div class="flex-1">
-                        <label class="block text-xs text-gray-500 mb-1">Nama Apotek</label>
+                        <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
                         <input type="search" name="search" value="{{ $search }}" placeholder="Cari nama apotek..."
                             class="w-full h-10 px-3 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white placeholder:text-gray-400 transition-colors focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
                     </div>
@@ -73,7 +73,7 @@
                 <thead>
                     <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                         <th class="px-4 py-3 font-semibold w-10">#</th>
-                        <th class="px-4 py-3 font-semibold">Nama Apotek</th>
+                        <th class="px-4 py-3 font-semibold">Nama Apotik</th>
                         <th class="px-4 py-3 font-semibold w-36">Kecamatan</th>
                         <th class="px-4 py-3 font-semibold text-center w-24">Status</th>
                         <th class="px-4 py-3 font-semibold text-center w-20">Aksi</th>
@@ -144,13 +144,13 @@
 
 </div>
 
-{{-- ===== Modal Detail Apotek ===== --}}
+{{-- ===== Modal Detail Apotik ===== --}}
 <div id="modal-detail" class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
     <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
 
         {{-- Header --}}
         <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-            <h3 class="font-semibold text-gray-800">Detail Apotek</h3>
+            <h3 class="font-semibold text-gray-800">Detail Apotik</h3>
             <button onclick="tutupModalDetail()" class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -165,7 +165,7 @@
                 {{-- Kiri: Info --}}
                 <div class="space-y-3">
                     <div>
-                        <label class="block text-xs text-gray-500 mb-0.5">Nama Apotek</label>
+                        <label class="block text-xs text-gray-500 mb-0.5">Nama Apotik</label>
                         <p id="detail-nama" class="text-sm font-medium text-gray-800">-</p>
                     </div>
                     <div>
@@ -184,7 +184,7 @@
 
                 {{-- Kanan: Peta --}}
                 <div>
-                    <label class="block text-xs text-gray-500 mb-1">Peta Apotek</label>
+                    <label class="block text-xs text-gray-500 mb-1">Peta Apotik</label>
                     <div id="detail-map" class="w-full rounded-lg border border-gray-200 bg-gray-100"
                         style="height: 224px; min-height: 224px;"></div>
                 </div>

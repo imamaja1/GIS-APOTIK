@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Registrasi — GIS Apotek KLU')
+@section('title', 'Registrasi — GIS Apotik KLU')
 
 @section('form')
     <div class="mb-8">
@@ -15,7 +15,7 @@
             </div>
             <div>
                 <h1 class="text-2xl font-bold text-gray-800">Register</h1>
-                <p class="text-gray-500 text-sm">SIG Penyebaran Apotek KLU</p>
+                <p class="text-gray-500 text-sm">SIG Penyebaran Apotik KLU</p>
             </div>
         </div>
     </div>

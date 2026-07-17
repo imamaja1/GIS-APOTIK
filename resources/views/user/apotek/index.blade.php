@@ -1,12 +1,12 @@
 @extends('layouts.user')
 
-@section('title', 'Data Apotek — GIS Apotek KLU')
+@section('title', 'Data Apotik — GIS Apotik KLU')
 
 @section('content')
 
 <div class="max-w-7xl mx-auto px-4 lg:px-8 py-6">
     <div class="mb-5">
-        <h1 class="text-lg font-semibold text-gray-800">Apotek KLU</h1>
+        <h1 class="text-lg font-semibold text-gray-800">Apotik KLU</h1>
         <p class="text-sm text-gray-400 mt-0.5">Total: {{ $apotek->total() }} apotek ditemukan</p>
     </div>
 
@@ -30,9 +30,9 @@
                         </select>
                     </div>
 
-                    {{-- Input Nama Apotek --}}
+                    {{-- Input Nama Apotik --}}
                     <div class="flex-1">
-                        <label class="block text-xs text-gray-500 mb-1">Nama Apotek</label>
+                        <label class="block text-xs text-gray-500 mb-1">Nama Apotik</label>
                         <input
                             type="text"
                             name="search"
@@ -67,7 +67,7 @@
                 <thead>
                     <tr class="bg-green-600 text-white text-left text-xs uppercase tracking-wide">
                         <th class="px-4 py-3 font-semibold w-10">#</th>
-                        <th class="px-4 py-3 font-semibold">Nama Apotek</th>
+                        <th class="px-4 py-3 font-semibold">Nama Apotik</th>
                         <th class="px-4 py-3 font-semibold w-36">Kecamatan</th>
                         <th class="px-4 py-3 font-semibold w-44 hidden md:table-cell">Alamat</th>
                         <th class="px-4 py-3 font-semibold text-center w-24">Status</th>
@@ -140,14 +140,14 @@
 
     </div>
 
-    {{-- ===== Modal Detail Apotek ===== --}}
+    {{-- ===== Modal Detail Apotik ===== --}}
     <div id="modal-detail"
          class="fixed inset-0 bg-black/50 z-[1100] hidden items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
 
             {{-- Modal Header --}}
             <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
-                <h3 class="font-semibold text-gray-800">Detail Apotek</h3>
+                <h3 class="font-semibold text-gray-800">Detail Apotik</h3>
                 <button onclick="tutupModal()"
                         class="text-gray-400 hover:text-gray-600 transition p-1 rounded cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,10 +160,10 @@
             <div class="flex-1 overflow-y-auto p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                    {{-- Info Apotek --}}
+                    {{-- Info Apotik --}}
                     <div class="space-y-4">
                         <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Nama Apotek</p>
+                            <p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Nama Apotik</p>
                             <p id="modal-nama" class="text-gray-800 font-semibold">—</p>
                         </div>
                         <div>
