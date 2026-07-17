@@ -43,6 +43,14 @@
 
         {{-- Info Apotik Terpilih --}}
         <div id="info-apotek" class="hidden mt-4 p-3 bg-green-50 border border-green-100 rounded-lg text-sm text-green-800">
+            <div id="info-apotek-text"></div>
+            <a id="btn-gmaps" href="#" target="_blank"
+               class="hidden inline-flex items-center gap-1.5 mt-2 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-lg transition cursor-pointer w-fit">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Buka Rute di Google Maps
+            </a>
         </div>
     </div>
 
@@ -58,10 +66,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    var searchMap   = initBaseMap('search-map');
-    var markerAwal  = null;
+    var searchMap    = initBaseMap('search-map');
+    var markerAwal   = null;
     var markerTujuan = null;
-    var routeLine   = null;
+    var routeLine    = null;
+    var originLat    = null;
+    var originLng    = null;
+    var destLat      = null;
+    var destLng      = null;
 
     // ================================================
     // Select2: Tempat Awal (data statis dari server)
@@ -78,7 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var selected = $(this).find(':selected');
 
         if (markerAwal) { markerAwal.remove(); markerAwal = null; }
+        originLat = null;
+        originLng = null;
         gambarGaris();
+        updateGmapsButton();
 
         if (val === 'gps') {
             if (navigator.geolocation) {
@@ -86,10 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     function (pos) {
                         var lat = pos.coords.latitude;
                         var lng = pos.coords.longitude;
+                        originLat = lat;
+                        originLng = lng;
                         markerAwal = L.marker([lat, lng], { icon: createMapIcon('blue') })
                             .bindPopup('<strong>Lokasi Saya</strong>').addTo(searchMap).openPopup();
                         searchMap.setView([lat, lng], 14);
                         gambarGaris();
+                        updateGmapsButton();
                     },
                     function () {
                         alert('Tidak dapat mengakses GPS. Pastikan izin lokasi diaktifkan.');
@@ -104,10 +122,13 @@ document.addEventListener('DOMContentLoaded', function () {
             var lat = parseFloat(selected.data('lat'));
             var lng = parseFloat(selected.data('lng'));
             if (lat && lng) {
+                originLat = lat;
+                originLng = lng;
                 markerAwal = L.marker([lat, lng], { icon: createMapIcon('blue') })
                     .bindPopup('<strong>' + selected.text() + '</strong>').addTo(searchMap);
                 searchMap.setView([lat, lng], 14);
                 gambarGaris();
+                updateGmapsButton();
             }
         }
     });
@@ -145,8 +166,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var lng  = parseFloat(data.lng);
 
         if (markerTujuan) { markerTujuan.remove(); markerTujuan = null; }
+        destLat = null;
+        destLng = null;
 
         if (lat && lng) {
+            destLat = lat;
+            destLng = lng;
             markerTujuan = L.marker([lat, lng], { icon: createMapIcon('green') })
                 .bindPopup('<strong>' + data.text + '</strong>')
                 .addTo(searchMap).openPopup();
@@ -154,17 +179,33 @@ document.addEventListener('DOMContentLoaded', function () {
             gambarGaris();
         }
 
-        // Tampilkan info apotek
         var infoEl = document.getElementById('info-apotek');
-        infoEl.innerHTML = '<strong>' + data.text + '</strong>';
+        document.getElementById('info-apotek-text').innerHTML = '<strong>' + data.text + '</strong>';
         infoEl.classList.remove('hidden');
+        updateGmapsButton();
     });
 
     $('#tempat-tujuan').on('select2:clear', function () {
         if (markerTujuan) { markerTujuan.remove(); markerTujuan = null; }
+        destLat = null;
+        destLng = null;
         gambarGaris();
         document.getElementById('info-apotek').classList.add('hidden');
+        updateGmapsButton();
     });
+
+    // ================================================
+    // Tombol Buka Rute di Google Maps
+    // ================================================
+    function updateGmapsButton() {
+        var btn = document.getElementById('btn-gmaps');
+        if (originLat !== null && originLng !== null && destLat !== null && destLng !== null) {
+            btn.href = 'https://www.google.com/maps/dir/?api=1&origin=' + originLat + ',' + originLng + '&destination=' + destLat + ',' + destLng;
+            btn.classList.remove('hidden');
+        } else {
+            btn.classList.add('hidden');
+        }
+    }
 
     // ================================================
     // Gambar garis dari titik awal ke tujuan
